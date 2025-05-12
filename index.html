@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="/Image/logo.png" type="image/x-icon" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="NarSafe - Narcissistic Awareness for Self-Acceptance is a psychological and sociological platform that enhances public awareness on narcissism and encourages emotional growth through reflection."
+    />
+    <title>NarSafe</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #334155;
+        --secondary-color: #475569;
+        --accent-color: #6366f1;
+        --light-bg: #000000;
+        --dark-text: #f8f8f8;
+        --thirdcolor: #18a6de;
+        --light-text: #000000;
+        --transition-speed: 0.5s;
+        --grid-line-color: rgba(255, 255, 255, 0.1);
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--light-bg);
+        color: var(--dark-text);
+        line-height: 1.7;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        overflow-x: hidden;
+      }
+
+      .grid-lines {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      .grid-line {
+        width: 1px;
+        height: 100%;
+        background-color: var(--grid-line-color);
+        position: absolute;
+        top: 0;
+      }
+
+      .line-1 {
+        left: 10%;
+      }
+      .line-2 {
+        left: 30%;
+      }
+      .line-3 {
+        left: 70%;
+      }
+      .line-4 {
+        left: 90%;
+      }
+      .grid-line-horizontal {
+        width: 100%;
+        height: 1px;
+        background-color: var(--grid-line-color);
+        position: absolute;
+        left: 0;
+      }
+      .line-h-1 {
+        top: 20%;
+      }
+      .line-h-2 {
+        top: 80%;
+      }
+
+      .navbar {
+        background-color: transparent;
+        line-height: 2.5rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: all 0.4s ease;
+      }
+      .logolight {
+        display: inline;
+      }
+      .logodark {
+        display: none;
+      }
+      .navbar.scrolled {
+        background-color: rgb(0, 0, 0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        .navbar-brand {
+          color: var(--thirdcolor);
+        }
+        .nav-link {
+          color: var(--thirdcolor) !important;
+        }
+        .nav-link.active {
+          background-color: var(--thirdcolor) !important;
+          color: rgb(255, 255, 255) !important;
+        }
+        .logolight {
+          display: none;
+        }
+        .logodark {
+          display: inline;
+        }
+        .nav-link:hover {
+          background-color: #0040598d !important;
+        }
+      }
+      .nav-link {
+        color: rgb(255, 255, 255) !important;
+        font-weight: 300;
+        padding: 0.7rem 1.2rem !important;
+        margin: 0 3px;
+        transition: all var(--transition-speed);
+      }
+      .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.437) !important;
+      }
+      .nav-link.active {
+        color: white !important;
+        font-size: 1.2rem;
+        background-color: rgba(255, 255, 255, 0.437);
+      }
+      .navbar-toggler {
+        background-color: transparent;
+        padding: 0.5rem;
+      }
+      .navbar-toggler-icon {
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        vertical-align: middle;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='shape' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+      }
+
+      .header-section {
+        background: linear-gradient(rgba(14, 56, 67, 0.6), rgba(0, 0, 0, 0.7)),
+          url("Image/chess.jpg") no-repeat center center/cover;
+        color: white;
+        padding: 200px 0 180px;
+        text-align: left;
+        position: relative;
+      }
+
+      .header-content {
+        max-width: 1000px;
+      }
+
+      .header-section h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        animation: fadeInUp 1s ease;
+        color: var(--thirdcolor);
+        text-shadow: #0000005b 0px 0px 5px;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: 2s ease;
+      }
+      .header-section .h1--visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .header-section .subtitle {
+        font-size: 2rem;
+        font-weight: 300;
+        animation: fadeInUp 1s ease;
+      }
+
+      .header-section .lead {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        animation: fadeInUp 1.2s ease;
+      }
+
+      .btn-primary-custom {
+        background-color: transparent;
+        border-radius: 1px;
+        border-color: white;
+        color: white;
+        padding: 20px 30px;
+        font-weight: 500;
+        transition: all var(--transition-speed);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .btn-primary-custom:hover {
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        background-color: #1688c1;
+      }
+      .btn-secondary {
+        background-color: white;
+        color: black;
+        border-radius: 1px;
+        border: 2px solid black;
+      }
+      .btn-secondary:hover {
+        transition: 1s ease;
+        background-color: black;
+        color: white;
+      }
+      .section .container .onex {
+        margin-top: 5rem;
+        text-align: center;
+      }
+
+      .section .container .whyx {
+        color: var(--thirdcolor);
+        font-size: 2rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: 1s ease-in-out;
+      }
+      .section .container .whyx--visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .aboutteam {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: white;
+        transform: translateY(30px);
+        transition: 1s ease-in-out;
+      }
+      .aboutteam--visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section .container .mb-4 {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 1s ease-in-out;
+      }
+      .section .container .mb-4--visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section {
+        padding: 100px 0;
+        position: relative;
+      }
+      .section-title {
+        margin-bottom: 3rem;
+        position: relative;
+        display: inline-block;
+        font-weight: 700;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 70px;
+        height: 4px;
+        background-color: var(--thirdcolor);
+        border-radius: 1px;
+      }
+
+      .team-grid {
+        text-align: center;
+        padding: 2rem 0;
+      }
+      .team-grid .whyx {
+        margin-bottom: 2rem;
+      }
+
+      .team-members {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .team-member:hover {
+        transform: translateY(-20px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .team-member {
+        transition: all var(--transition-speed);
+        background-color: rgb(0, 0, 0);
+        padding-bottom: 50px;
+        padding-top: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 200px;
+        max-width: 350px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: 2s ease;
+        border: 1px solid #191919;
+      }
+      .team-member--visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .team-member img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        margin-bottom: 1rem;
+        margin-right: 5rem;
+        margin-left: 5rem;
+        border: 2px solid white;
+        transition: all var(--transition-speed);
+      }
+      .team-member img:hover {
+        transform: translateY(-10px);
+      }
+
+      .team-member h3 {
+        font-size: 1.4rem;
+        font-weight: 300;
+      }
+      .team-member p {
+        transition: 2s ease-in-out;
+      }
+
+      .quoteb {
+        position: relative;
+        background-image: url(Image/manbquote.jpg);
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 60px 20px 200px;
+        text-align: center;
+      }
+      .quoteb h2 {
+        color: white;
+        margin-top: 1.2rem;
+        font-size: 2.5rem;
+      }
+      .card {
+        background-color: #010d18;
+        border: 1px solid #191919;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 1px;
+        overflow: hidden;
+        transition: all var(--transition-speed);
+        height: 100%;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .card-body {
+        padding: 30px;
+      }
+
+      .card-title {
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: var(--thirdcolor);
+      }
+
+      .card-text {
+        color: rgb(255, 255, 255);
+        text-align: center;
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: var(--thirdcolor);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .feature-icon i {
+        font-size: 2rem;
+        color: white;
+      }
+
+      .feature-card {
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      .form-control {
+        padding: 12px;
+        border-radius: 1px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .form-control:focus {
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        border-color: var(--accent-color);
+      }
+      .sectionnews {
+        border: 1px solid #101010;
+        background-color: rgb(0, 0, 0);
+        padding: 30px 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal-body {
+        color: white;
+        background-color: #000000;
+        border: 2px solid #111111;
+      }
+
+      .modal-footer {
+        background-color: black;
+      }
+
+      footer {
+        border-top: 1px solid rgb(21, 21, 21);
+        background-color: black;
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-links h5 {
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .social-links a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        text-align: center;
+        line-height: 40px;
+        margin-right: 10px;
+        color: white;
+        transition: all 0.3s;
+      }
+
+      .social-links a:hover {
+        background-color: var(--thirdcolor);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .sectionx button {
+        background-color: transparent;
+        border-color: var(--thirdcolor);
+        color: var(--thirdcolor);
+        padding: 6px 20px;
+      }
+      .sectionx button:hover {
+        background-color: var(--thirdcolor);
+        border: none;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeInUp {
+        animation: fadeInUp 0.8s ease forwards;
+      }
+
+      /* Fade-in animation with delay options */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .delay-100 {
+        transition-delay: 0.1s;
+      }
+
+      .delay-200 {
+        transition-delay: 0.2s;
+      }
+
+      .delay-300 {
+        transition-delay: 0.3s;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: white;
+        border-radius: 1px;
+        padding: 50px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .cta-section h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Tooltip styling */
+      .tooltip-custom {
+        position: relative;
+        display: inline-block;
+      }
+
+      .tooltip-custom .tooltip-text {
+        visibility: hidden;
+        width: 200px;
+        background-color: var();
+        color: white;
+        text-align: center;
+        border-radius: 1px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .tooltip-custom:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Modal styling */
+      .modal-content {
+        border-radius: 1px;
+        border: none;
+        overflow: hidden;
+      }
+
+      .modal-header {
+        background-color: var(--thirdcolor);
+        color: white;
+        border-bottom: none;
+        padding: 20px 30px;
+        border-radius: 1px;
+      }
+
+      .modal-body {
+        padding: 30px;
+        border-radius: 1px;
+      }
+
+      .modal-footer {
+        border-top: none;
+        padding: 20px 30px;
+        border-radius: 1px;
+      }
+      /* Responsive styles */
+      @media (max-width: 992px) {
+        .header-section {
+          padding: 180px 0 100px;
+        }
+
+        .header-section h1 {
+          font-size: 2.5rem;
+        }
+
+        .section {
+          padding: 70px 0;
+        }
+      }
+      @media (max-width: 768px) {
+        .header-section h1 {
+          font-size: 2rem;
+        }
+        .team-members {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .header-section .lead {
+          font-size: 1.1rem;
+        }
+
+        .section {
+          padding: 50px 0;
+        }
+
+        .cta-section {
+          padding: 30px;
+        }
+      }
+
+      /* Loading animation */
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0);
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+
+      .loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #454444;
+        border-top: 5px solid var(--thirdcolor);
+        border-radius: 100%;
+        animation: spin 0.5s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+      .timeline {
+        position: relative;
+        padding: 40px 0;
+      }
+      /* Center line */
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          #a9a9a9 6%,
+          #7f7f7f 94%,
+          transparent
+        );
+        transform: translateX(-50%);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 1.5s ease-out;
+      }
+      .timeline.animate::before {
+        transform: scaleY(1);
+      }
+      .timeline-item {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-bottom: 80px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease-out;
+      }
+      .timeline-item.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+      /* Content positioning */
+      .timeline-content {
+        width: 45%;
+        padding: 50px;
+        background-color: #000000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        position: relative;
+        margin-left: 8rem;
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.7s ease-out;
+        transition-delay: 0.2s;
+        border: 1px solid rgb(16, 16, 16);
+      }
+      .timeline-content h3 {
+        color: var(--thirdcolor);
+      }
+      .timeline-item.animate .timeline-content {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .timeline-content-left {
+        margin-left: auto;
+        margin-right: 8rem;
+        text-align: left;
+        transform: translateX(-30px);
+      }
+      /* Image container */
+      .timeline-img-container {
+        width: 45%;
+        display: flex;
+        justify-content: flex-end;
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.7s ease-out;
+        transition-delay: 0.2s;
+      }
+      .timeline-item.animate .timeline-img-container {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .timeline-img-right {
+        justify-content: flex-start;
+        height: fit-content;
+        transform: translateX(30px);
+      }
+      .timeline-img {
+        max-width: 100%;
+        height: auto;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .timeline-img:hover {
+        transform: scale(1.01);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        transition: 1s ease;
+      }
+      .timeline-number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        background-color: var(
+          --thirdcolor
+        ); /* Primary color, adjust as needed */
+        color: #ffffff;
+        border-radius: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        z-index: 1;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+        transition: all 0.8s ease-out;
+        transition-delay: 0.3s;
+      }
+      .timeline-number:hover {
+        transform: scale(1.1);
+        background-color: rgb(0, 0, 0);
+        border: 2px solid var(--thirdcolor);
+      }
+      .timeline-item.animate .timeline-number {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      /* Delay animation for different items */
+      .timeline-item:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .timeline-item:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+      .timeline-item:nth-child(4) {
+        transition-delay: 0.3s;
+      }
+      /* Responsive adjustments */
+      @media (max-width: 750px) {
+        .line-1 {
+          display: none;
+        }
+        .line-2 {
+          left: 12%;
+        }
+        .line-3 {
+          left: 50%;
+        }
+
+        .timeline::before {
+          left: 30px;
+        }
+
+        .timeline-item {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .timeline-content {
+          font-size: 0.8rem;
+          padding: 10px;
+        }
+
+        .timeline-content,
+        .timeline-content-left {
+          width: calc(100% - 90px);
+          margin-left: 60px;
+          margin-right: 0;
+          text-align: left;
+        }
+        .timeline-img-container,
+        .timeline-img-right {
+          width: calc(100% - 90px);
+          margin-left: 60px;
+          justify-content: flex-start;
+          order: -1;
+          margin-bottom: 15px;
+        }
+
+        .timeline-number {
+          width: 30px;
+          height: 30px;
+          left: 30px;
+          transform: translate(-50%, -50%);
+        }
+        .features .container .row {
+          font-size: 1rem;
+        }
+
+        .quoteb h2 {
+          margin-top: 1rem;
+          font-size: 1.2rem;
+        }
+        .quoteb img {
+          transform: scale(2);
+        }
+      }
+      /* Animation classes */
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 0.8s forwards;
+      }
+
+      .delay-100 {
+        animation-delay: 0.1s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .btn-outline-primary {
+        color: var(--thirdcolor);
+        border-radius: 1px;
+        border: 1px solid var(--thirdcolor);
+      }
+
+      .btn-outline-primary:hover {
+        background-color: var(--thirdcolor);
+        color: white;
+        border: 1px solid var(--thirdcolor);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading animation -->
+    <div class="loader">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#home">
+          <img src="Image/Narsafe logo 2.png" class="logolight" />
+          <img src="Image/Narsafe logo.png" class="logodark" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#news">Article</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center ms-3"></div>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <section class="header-section" id="home">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="display-4 fw-bold">NARSAFE</h1>
+          <p class="subtitle">Narcissistic Awareness for Self-Acceptance</p>
+
+          <p class="lead">
+            Pernah merasa ingin selalu jadi pusat perhatian, haus akan
+            pengakuan, tapi kecewa saat tak didengar? Atau justru merasa
+            bingung—siapa dirimu sebenarnya, di balik topeng yang kerap kau
+            kenakan? Gejala narsistik bisa hadir secara halus, menyamar dalam
+            bentuk keinginan untuk diakui. NARSAFE hadir sebagai ruang yang aman
+            untuk membimbingmu menjelajahi sisi terdalam dirimu, mendalami emosi
+            yang terpendam, dan menuntunmu menuju penerimaan diri yang jujur,
+            bukan berdasarkan ego, tapi atas dasar pemahaman dan kasih.
+          </p>
+
+          <a href="#about" class="btn btn-primary-custom btn-lg"
+            >Mulai Perjalanan</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-lines">
+      <div class="grid-line line-1"></div>
+      <div class="grid-line line-2"></div>
+      <div class="grid-line line-3"></div>
+      <div class="grid-line line-4"></div>
+
+      <div class="grid-line-horizontal line-h-1"></div>
+      <div class="grid-line-horizontal line-h-2"></div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 fade-in">
+            <h2 class="section-title">About</h2>
+            <p class="mb-4">
+              NARSAFE adalah platform yang membahas kesadaran akan sifat
+              narsistik dan dampaknya terhadap hubungan sosial dan penerimaan
+              diri. Dengan pendekatan psikologi dan sosiologi, website ini
+              bertujuan untuk mengedukasi dan memberikan ruang refleksi bagi
+              setiap individu.
+            </p>
+
+            <p class="mb-4">
+              Misi kami adalah menumbuhkan penerimaan diri melalui kesadaran dan
+              pemahaman akan sifat-sifat narsistik. Dengan menyediakan sumber
+              daya pendidikan, temuan penelitian, dan alat refleksi, kami
+              bertujuan untuk membantu individu mengembangkan hubungan yang
+              lebih sehat dengan diri mereka sendiri dan orang lain.
+            </p>
+          </div>
+          <div class="col-lg-6 fade-in delay-100">
+            <img
+              src="Image/narcs.jpg"
+              alt="About NARSAFE"
+              class="img-fluid shadow-lg"
+            />
+          </div>
+        </div>
+        <div class="container">
+          <div class="onex">
+            <h2 class="whyx">Why We Build?</h2>
+            <p class="mb-4">
+              Perjalanan kami dalam membangun NARSAFE berawal dari pengalaman
+              dan refleksi mendalam.
+            </p>
+          </div>
+        </div>
+        <div class="timeline">
+          <!-- Timeline Item 1 -->
+          <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+              <div class="timeline-img-container">
+                <img
+                  src="Image/narsmain.png"
+                  alt="Tahap 1"
+                  class="timeline-img"
+                />
+              </div>
+              <div class="timeline-number">1</div>
+              <div class="timeline-content">
+                <h3>Munculnya Keinginan untuk Diperhatikan</h3>
+                <p>
+                  Adanya suatu masalah pada diri seseorang yaitu merasa ingin
+                  selalu menjadi pusat perhatian. Ada dorongan untuk mendapatkan
+                  pengakuan dari orang lain.
+                </p>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+              <div class="timeline-content timeline-content-left">
+                <h3>Kekecewaan Saat Tidak Mendapatkan Apresiasi</h3>
+                <p>
+                  Perasaan mudah kecewa ketika tidak mendapat pujian atau
+                  validasi. Timbul ketidakpuasan dan keraguan terhadap nilai
+                  diri sendiri.
+                </p>
+              </div>
+              <div class="timeline-number">2</div>
+              <div class="timeline-img-container timeline-img-right">
+                <img
+                  src="Image/secondimg.jpg"
+                  alt="Tahap 2"
+                  class="timeline-img"
+                />
+              </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+              <div class="timeline-img-container">
+                <img src="Image/kk.jpg" alt="Tahap 3" class="timeline-img" />
+              </div>
+              <div class="timeline-number">3</div>
+              <div class="timeline-content">
+                <h3>Krisis Identitas dan Kebingungan Diri</h3>
+                <p>
+                  Mulai merasa bingung tentang siapa diri sendiri sebenarnya.
+                  Pertanyaan eksistensial muncul: "Siapa aku sebenarnya?"
+                </p>
+              </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+              <div class="timeline-content timeline-content-left">
+                <h3>Mencari Makna dan Dukungan</h3>
+                <p>
+                  Timbul kebutuhan untuk dipahami dan dimengerti. Mencari tempat
+                  yang aman untuk mengeksplorasi emosi dan jati diri.
+                </p>
+              </div>
+              <div class="timeline-number">4</div>
+              <div class="timeline-img-container timeline-img-right">
+                <img
+                  src="Image/fourth.jpg"
+                  alt="Tahap 4"
+                  class="timeline-img"
+                />
+              </div>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+              <div class="timeline-img-container">
+                <img src="Image/six.jpg" alt="Tahap 5" class="timeline-img" />
+              </div>
+              <div class="timeline-number">5</div>
+              <div class="timeline-content">
+                <h3>NARSAFE Hadir sebagai Teman Perjalanan</h3>
+                <p>
+                  Memberikan ruang untuk mengenal, memahami, dan menerima diri.
+                  Menawarkan pendekatan yang tenang, jujur, dan reflektif.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="quoteb">
+          <img src="Image/quote.png" width="3%" />
+          <h2>
+            "Kami percaya bahwa kesadaran diri adalah langkah pertama menuju
+            kebebasan dari kebutuhan akan validasi eksternal."
+          </h2>
+        </div>
+        <div class="container">
+          <div class="onex team-grid">
+            <h2 class="whyx">Meet Our Team</h2>
+            <h4 class="aboutteam">
+              Kenalan dengan orang-orang yang membuat NARSAFE hadir untuk
+              menemani perjalanan refleksimu.
+            </h4>
+            <div class="team-members">
+              <div class="team-member">
+                <img src="Team/silvia.png" />
+                <h3 style="color: var(--thirdcolor); font-weight: 500">
+                  Silvia Manao
+                </h3>
+
+                <p>Ide Kreatif & Penulis Kontent</p>
+              </div>
+              <div class="team-member">
+                <img src="Team/maya.jpg" />
+                <h3 style="color: var(--thirdcolor); font-weight: 500">Maya</h3>
+                <p>Design, UI & Emosi Visual Website</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="sectionx" id="features">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">Features</h2>
+        <div class="row">
+          <!-- Baris Pertama: 3 kartu -->
+          <div class="col-md-4 mb-4 fade-in">
+            <div class="card feature-card h-100">
+              <div class="card-body text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="fas fa-brain"></i>
+                </div>
+                <h4 class="card-title">Insight Module</h4>
+                <p class="card-text">
+                  Akses informasi berbasis bukti tentang narsisme, citra diri,
+                  dan kesehatan emosional yang dikemukakan oleh para ahli.
+                </p>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  onclick="location.href='#news'"
+                >
+                  Jelajahi
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4 fade-in delay-100">
+            <div class="card feature-card h-100">
+              <div class="card-body text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="fas fa-comment-dots"></i>
+                </div>
+                <h4 class="card-title">Self-Reflection Journal</h4>
+                <p class="card-text">
+                  Fitur ini bertujuan mendorong refleksi diri harian guna
+                  mengurangi manifestasi star syndrome dan kecenderungan
+                  narsistik.
+                </p>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  onclick="location.href='Journal/index.html'"
+                >
+                  Jelajahi
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4 fade-in delay-200">
+            <div class="card feature-card h-100">
+              <div class="card-body text-left">
+                <div class="feature-icon mx-auto">
+                  <i class="fas fa-list"></i>
+                </div>
+                <h4 class="card-title">
+                  Self Check-In: Tes Tendensi Narsistik
+                </h4>
+                <p class="card-text">
+                  Tes ini membantumu mengenali sejauh mana kecenderungan
+                  narsistik dalam diri. Jawablah dengan jujur, karena ini ruang
+                  refleksi, bukan penilaian.
+                </p>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  onclick="location.href='selfreflection/index.html'"
+                >
+                  Jelajahi
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Baris Kedua: 2 kartu lainnya -->
+          <div class="col-md-4 mb-4 fade-in">
+            <div class="card feature-card h-100">
+              <div class="card-body text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="fas fa-stairs"></i>
+                </div>
+                <h4 class="card-title">Langkah Sadar Diri</h4>
+                <p class="card-text">
+                  Latih kesadaran diri dan kerendahan hati setiap hari lewat
+                  kebiasaan kecil yang berdampak besar. Kenali dirimu, rawat
+                  relasi, dan tumbuhkan pola pikir sehat.
+                </p>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  onclick="location.href='SelfStep/index.html'"
+                >
+                  Jelajahi
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4 fade-in delay-100">
+            <div class="card feature-card h-100">
+              <div class="card-body text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="fas fa-mountain"></i>
+                </div>
+                <h4 class="card-title">Weekly Emphaty Challenge</h4>
+                <p class="card-text">
+                  Tantangan ini mengajakmu melatih empati dan koneksi emosional
+                  lewat satu aksi kecil setiap hari, yang berdampak bagi orang
+                  lain dan bermakna untuk dirimu sendiri.
+                </p>
+                <button class="btn btn-sm btn-outline-primary">Jelajahi</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4 fade-in delay-200">
+            <div class="card feature-card h-100">
+              <div class="card-body text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="fas fa-book"></i>
+                </div>
+                <h4 class="card-title">Letter to Yourself</h4>
+                <p class="card-text">
+                  Menulis untuk diri sendiri adalah langkah bermakna untuk
+                  memahami dirimu lebih dalam. Ini bisa menjadi pelukan hangat
+                  saat cemas, semangat baru saat berat, atau pengingat lembut
+                  bahwa kamu layak tumbuh dan bahagia.
+                </p>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  onclick="location.href='Letter/index.html'"
+                >
+                  Jelajahi
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--  <section class="section" id="testimonials">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">What People Say</h2>
+        <div class="row">
+          <div class="col-lg-4 mb-4 fade-in">
+            <div class="testimonial h-100">
+              <p class="testimonial-text">
+                "NARSAFE has helped me understand my own behaviors and thought
+                patterns. The daily reflection practice has been transformative
+                for my personal growth."
+              </p>
+              <div class="testimonial-author">
+                <img src="Image/narsmain.png" alt="Testimonial Author" />
+                <div class="testimonial-author-info">
+                  <h5>Sarah Johnson</h5>
+                  <small>Psychology Student</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4 fade-in delay-100">
+            <div class="testimonial h-100">
+              <p class="testimonial-text">
+                "As a therapist, I recommend NARSAFE to many of my clients. The
+                resources are well-researched and the reflection tools provide
+                valuable structure for self-examination."
+              </p>
+              <div class="testimonial-author">
+                <img src="/api/placeholder/50/50" alt="Testimonial Author" />
+                <div class="testimonial-author-info">
+                  <h5>Dr. Michael Chen</h5>
+                  <small>Clinical Psychologist</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4 fade-in delay-200">
+            <div class="testimonial h-100">
+              <p class="testimonial-text">
+                "The community aspect of NARSAFE has been incredibly supportive.
+                Sharing experiences with others on similar journeys has made me
+                feel less alone in my struggles."
+              </p>
+              <div class="testimonial-author">
+                <img src="/api/placeholder/50/50" alt="Testimonial Author" />
+                <div class="testimonial-author-info">
+                  <h5>Amanda Torres</h5>
+                  <small>Community Member</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- News Section -->
+    <section class="sectionnews" id="news">
+      <div class="container">
+        <h2 class="section-title mb-5">Articles</h2>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 fade-in">
+            <div class="card h-100">
+              <img
+                src="Image/image.png"
+                class="card-img-top"
+                alt="News Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  Studi Terbaru Mengenai Narsisme di Media Sosial
+                </h5>
+                <p class="card-text">
+                  Penelitian menunjukkan bahwa penggunaan media sosial yang
+                  berlebihan dapat memperkuat perilaku narsistik. Bagaimana kita
+                  bisa menggunakan media sosial secara sehat?
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button
+                    class="btn btn-sm btn-outline-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#newsModal1"
+                  >
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4 fade-in delay-100">
+            <div class="card h-100">
+              <img
+                src="Image/narc2.jpg"
+                class="card-img-top"
+                alt="News Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  Refleksi Diri: Kunci Menghadapi Sifat Narsistik
+                </h5>
+                <p class="card-text">
+                  Pentingnya menyadari emosi dan pola pikir sebagai langkah awal
+                  menuju penerimaan diri. Bagaimana praktik refleksi harian
+                  dapat membantu?
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button
+                    class="btn btn-sm btn-outline-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#newsModal2"
+                  >
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4 fade-in delay-200">
+            <div class="card h-100">
+              <img
+                src="Image/terar.jpg"
+                class="card-img-top"
+                alt="News Image"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  Understanding the Spectrum of Narcissism
+                </h5>
+                <p class="card-text">
+                  New research suggests narcissism exists on a spectrum, with
+                  healthy self-confidence on one end and pathological narcissism
+                  on the other.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button
+                    class="btn btn-sm btn-outline-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#newsModal3"
+                  >
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="#" class="btn btn-outline-primary">View All News</a>
+        </div>
+      </div>
+    </section>
+
+    <!--  -->
+    <!-- News Modals -->
+    <div
+      class="modal fade"
+      id="newsModal1"
+      tabindex="-1"
+      aria-labelledby="newsModal1Label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newsModal1Label">
+              Studi Terbaru Mengenai Narsisme di Media Sosial
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="Image/image.png"
+              class="img-fluid rounded mb-4"
+              alt="News Image"
+            />
+            <p>
+              Penelitian terbaru yang dipublikasikan dalam Journal of
+              Personality and Social Psychology menunjukkan korelasi yang
+              signifikan antara penggunaan media sosial yang berlebihan dengan
+              peningkatan perilaku narsistik pada individu.
+            </p>
+            <p>
+              Studi yang melibatkan lebih dari 2,000 responden ini menemukan
+              bahwa mereka yang menghabiskan lebih dari 3 jam sehari di platform
+              media sosial menunjukkan peningkatan tanda-tanda narsisme seperti
+              kebutuhan akan validasi eksternal dan fokus berlebihan pada citra
+              diri.
+            </p>
+            <p>
+              Dr. Amanda Rodriguez, peneliti utama studi ini, menyatakan: "Media
+              sosial pada dasarnya bukan hal yang buruk, tetapi cara kita
+              menggunakannya dapat berdampak signifikan pada kesehatan mental
+              dan persepsi diri kita. Penting untuk membangun kebiasaan digital
+              yang sehat."
+            </p>
+            <h6 class="mt-4 fw-bold">
+              Tips Menggunakan Media Sosial Secara Sehat:
+            </h6>
+            <ul>
+              <li>Batasi waktu penggunaan media sosial harian</li>
+              <li>
+                Fokus pada koneksi otentik daripada jumlah likes atau followers
+              </li>
+              <li>Refleksikan motivasi Anda dalam memposting konten</li>
+              <li>
+                Hindari membandingkan diri Anda dengan orang lain di media
+                sosial
+              </li>
+              <li>Jadwalkan "digital detox" secara berkala</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="newsModal2"
+      tabindex="-1"
+      aria-labelledby="newsModal2Label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newsModal2Label">
+              Refleksi Diri: Kunci Menghadapi Sifat Narsistik
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="Image/narc2.jpg"
+              class="img-fluid rounded mb-4"
+              alt="News Image"
+            />
+            <p>
+              Praktik refleksi diri yang konsisten telah terbukti menjadi salah
+              satu metode paling efektif dalam mengenali dan mengelola
+              kecenderungan narsistik. Para psikolog kini merekomendasikan
+              pendekatan mindfulness dan refleksi sebagai bagian dari terapi.
+            </p>
+            <p>
+              Refleksi diri memungkinkan kita untuk mengembangkan kesadaran yang
+              lebih dalam tentang pola pikir, emosi, dan perilaku kita. Melalui
+              proses ini, kita dapat mulai mengidentifikasi aspek-aspek dari
+              diri kita yang mungkin menunjukkan kecenderungan narsistik yang
+              tidak sehat.
+            </p>
+            <p>
+              Dr. Michael Tan menjelaskan: "Dengan refleksi yang jujur, kita
+              bisa lebih mengenali kapan kita terlalu fokus pada citra diri atau
+              validasi eksternal. Refleksi membuka jalan menuju penerimaan diri
+              yang lebih otentik."
+            </p>
+            <h6 class="mt-4 fw-bold">Panduan Praktik Refleksi Harian:</h6>
+            <ol>
+              <li>
+                Luangkan 10-15 menit setiap hari untuk refleksi tanpa gangguan
+              </li>
+              <li>
+                Tuliskan pengalaman, pikiran, dan perasaan Anda dengan jujur
+              </li>
+              <li>Pertanyakan motivasi di balik tindakan dan keputusan Anda</li>
+              <li>Kenali pola pikir yang muncul berulang</li>
+              <li>
+                Praktikkan rasa syukur dan pengakuan terhadap kontribusi orang
+                lain
+              </li>
+            </ol>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="newsModal3"
+      tabindex="-1"
+      aria-labelledby="newsModal3Label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newsModal3Label">
+              Understanding the Spectrum of Narcissism
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="Image/terar.jpg"
+              class="img-fluid rounded mb-4"
+              alt="News Image"
+            />
+            <p>
+              Recent psychological research has shifted away from viewing
+              narcissism as a binary trait, instead recognizing it as existing
+              on a spectrum that affects everyone to varying degrees.
+            </p>
+            <p>
+              Dr. Elizabeth Chen, lead researcher at the Institute for
+              Personality Studies, explains: "At one end of the spectrum, we
+              have healthy self-confidence and self-esteem, which is beneficial.
+              At the other end, we find pathological narcissism that
+              significantly impairs relationships and well-being."
+            </p>
+            <p>
+              This nuanced understanding helps reduce stigma and encourages more
+              people to examine their own narcissistic tendencies in a
+              constructive way, recognizing that some degree of self-focus is
+              natural in all humans.
+            </p>
+            <h6 class="mt-4 fw-bold">Key Points from the Research:</h6>
+            <ul>
+              <li>Almost everyone displays some narcissistic traits</li>
+              <li>
+                Cultural and developmental factors influence where someone falls
+                on the spectrum
+              </li>
+              <li>
+                Social media and modern parenting practices may be shifting
+                population averages
+              </li>
+              <li>
+                Self-awareness is the key to maintaining healthy levels of
+                self-regard
+              </li>
+              <li>
+                Therapeutic approaches are most effective when tailored to an
+                individual's specific position on the spectrum
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="section" id="cta">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="cta-section text-center fade-in">
+              <h3 class="mb-4">Contact & Support</h3>
+              <p class="mb-4">
+                Connect with like-minded individuals on the journey of
+                self-discovery and personal growth.
+              </p>
+              <form class="row justify-content-center">
+                <div class="col-md-8">
+                  <div class="input-group mb-3">
+                    <input
+                      type="email"
+                      class="form-control form-control-lg"
+                      placeholder="Your email address"
+                      aria-label="Email Address"
+                    />
+                    <button class="btn btn-light" type="submit">Send</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <h5 class="text-uppercase mb-4">NARSAFE</h5>
+            <p>
+              Presented by <br />Silvia Manao | Maya Saira <br />
+              Club Karya Ilmiah Remaja SMAS Sultan Iskandar Muda Medan, Sumatera
+              Utara, Indonesia
+            </p>
+            <p>
+              Narsafe website bukan merupakan layanan psikolog profesional.
+              Semua konten yang disediakan bertujuan untuk memberikan informasi,
+              dukungan emosional, serta meningkatkan kesadaran tentang
+              pentingnya kesejahteraan mental. Jika Anda membutuhkan bantuan
+              profesional, kami sarankan untuk berkonsultasi dengan ahli
+              psikologi atau tenaga medis yang berlisensi.
+            </p>
+            <div class="social-links mt-4">
+              <a href="#" aria-label="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0 footer-links">
+            <h5>Navigate</h5>
+            <ul class="list-unstyled">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#news">News</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h5>Support</h5>
+            <ul class="list-unstyled">
+              <li><a href="Footer/FAQ.html">FAQ</a></li>
+              <li>
+                <a href="Footer/terms_of_service.html">Terms of Service</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center copyright">
+          <p>&copy; 2025 NARSAFE. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="terra.js"></script>
+  </body>
+</html>
