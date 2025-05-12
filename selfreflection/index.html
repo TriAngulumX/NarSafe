@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <link rel="icon" href="/Image/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tes Refleksi Narsistik - NARSAFE</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #334155;
+        --secondary-color: #475569;
+        --accent-color: #03afff;
+        --accent-dark: #0e618a;
+        --light-bg: #f5f7fa;
+        --dark-text: #1e293b;
+        --light-text: #f8fafc;
+        --grid-line-color: rgba(255, 255, 255, 0.2);
+        --transition-speed: 0.3s;
+        --card-bg-gradient: linear-gradient(180deg, black, #001320);
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", serif;
+        background: linear-gradient(180deg, black, #001320);
+        color: var(--dark-text);
+        line-height: 1.7;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      /* Navbar */
+      .navbar {
+        background-color: #000000;
+        line-height: 2.5rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 10px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand img {
+        height: 35px;
+      }
+
+      .navbar.scrolled {
+        background-color: rgb(0, 0, 0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        .navbar-brand {
+          color: var(--thirdcolor);
+        }
+        .nav-link {
+          color: var(--thirdcolor) !important;
+        }
+        .nav-link.active {
+          background-color: var(--thirdcolor) !important;
+          color: rgb(255, 255, 255) !important;
+        }
+        .logolight {
+          display: none;
+        }
+        .logodark {
+          display: inline;
+        }
+        .nav-link:hover {
+          background-color: #0040598d !important;
+        }
+      }
+      .nav-link {
+        color: rgb(255, 255, 255) !important;
+        font-weight: 300;
+        padding: 0.7rem 1.2rem !important;
+        margin: 0 3px;
+        transition: all var(--transition-speed);
+      }
+      .nav-link:hover {
+        background-color: rgba(1, 70, 113, 0.437) !important;
+      }
+      .nav-link.active {
+        color: white !important;
+        font-size: 1.2rem;
+        background-color: #03afff;
+      }
+      .navbar-toggler {
+        background-color: transparent;
+        padding: 0.5rem;
+      }
+      .navbar-toggler-icon {
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        vertical-align: middle;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='shape' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+      }
+
+      /* Header Section */
+      .header-section {
+        height: 100vh;
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.807),
+            rgba(1, 25, 40, 0.897)
+          ),
+          url("Logo/tree.jpg");
+        color: white;
+        padding: 180px 0;
+        text-align: left;
+        max-height: fit-content;
+        position: relative;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        overflow: hidden;
+      }
+
+      .grid-lines {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+
+      .grid-line {
+        width: 1px;
+        height: 100%;
+        background-color: var(--grid-line-color);
+        position: absolute;
+        top: 0;
+      }
+
+      .line-1 {
+        left: 10%;
+      }
+      .line-2 {
+        left: 50%;
+      }
+      .line-3 {
+        left: 90%;
+      }
+
+      .grid-line-horizontal {
+        width: 100%;
+        height: 1px;
+        background-color: var(--grid-line-color);
+        position: absolute;
+        left: 0;
+      }
+
+      .line-h-1 {
+        top: 20%;
+      }
+      .line-h-2 {
+        top: 80%;
+      }
+
+      .header-content {
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        max-width: 800px;
+      }
+
+      .header-section h1 {
+        font-size: 3.5rem;
+        font-weight: 500;
+        color: #03afff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-top: 0.1rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .header-section h2 {
+        color: #d9f2fe;
+        font-size: 2rem;
+        font-weight: 100;
+        margin-bottom: 3.2rem;
+      }
+
+      .header-section .subtitle {
+        margin-top: 2rem;
+        font-size: 1.7rem;
+        font-weight: 400;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .header-section .lead {
+        font-size: 1.1rem;
+        margin-top: 0.1rem;
+        line-height: 1.8;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Buttons */
+      .btn-gradient {
+        border: 1px solid white;
+        color: white;
+        padding: 12px 28px;
+        font-weight: 500;
+        font-size: 1rem;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #1688c1, #1471a3);
+        color: white;
+      }
+
+      .btn-gradient:active {
+        transform: translateY(0);
+      }
+
+      .btntwo {
+        background-color: var(--accent-color);
+        color: white;
+        padding: 12px 30px;
+        font-weight: 500;
+        border-radius: 4px;
+        font-size: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .btntwo:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background-color: #898989;
+        transform: none;
+      }
+
+      .btntwo:disabled:hover {
+        transform: none;
+        background-color: #cccccc;
+      }
+
+      .btntwo:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(180deg, #01476a, #1037634a);
+        color: white;
+      }
+
+      .btntwo:active {
+        transform: translateY(0);
+      }
+
+      /* QUIZ CARD - IMPROVED DESIGN */
+      .question-card {
+        max-height: fit-content;
+        background-position: center;
+        position: relative;
+        justify-content: center;
+        border-color: 2px white;
+        background: var(--card-bg-gradient);
+        max-width: 1000px;
+        width: 100%;
+        margin: 7.5rem auto;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        padding: 3rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .question-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        border-radius: 50%;
+        transform: translate(50%, -50%);
+        z-index: 1;
+      }
+
+      .question-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.05) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        border-radius: 50%;
+        transform: translate(-30%, 30%);
+        z-index: 1;
+      }
+
+      .card-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .titleb {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 2rem;
+      }
+
+      .progress-container {
+        width: 100%;
+        height: 8px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(to right, #4cc0ff, #1473d9);
+        border-radius: 4px;
+        transition: width 0.5s ease;
+      }
+
+      #progress-label {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .question-text {
+        background: linear-gradient(180deg, black, #001320);
+        padding: 1.5rem 3rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 2.5rem;
+        border-radius: 8px;
+        border-color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid var(--accent-color);
+        transition: transform 0.3s ease;
+        color: rgb(97, 196, 246);
+      }
+
+      .question-text:hover {
+        transform: translateY(-2px);
+      }
+
+      /* Modern Scale Options */
+      .scale-options-container {
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        gap: 10px;
+      }
+
+      .scale-option {
+        flex: 1;
+        background-color: rgba(0, 0, 0, 0.9);
+        border: none;
+        border-radius: 8px;
+        padding: 15px 10px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 75px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+        transform: translateY(0);
+      }
+
+      .scale-option::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: transparent;
+        transition: all 0.3s ease;
+      }
+
+      .scale-option:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+      }
+
+      .scale-option:hover::before {
+        background-color: rgba(24, 166, 222, 0.5);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        border-color: var(--accent-color);
+      }
+
+      .scale-option.selected {
+        transform: translateY(-3px);
+        background-color: var(--accent-color);
+        color: white;
+        font-weight: 500;
+        box-shadow: 0 8px 20px rgba(24, 166, 222, 0.3);
+      }
+
+      .scale-option.selected::before {
+        background-color: white;
+      }
+
+      .scale-option input {
+        display: none;
+      }
+
+      /* Result Section */
+      #result {
+        margin-top: 8rem;
+        max-width: 800px;
+        background: linear-gradient(180deg, black, #001320);
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        padding: 2.5rem;
+      }
+
+      #result h2 {
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+      }
+
+      #zone-message {
+        padding: 1.5rem;
+        background-color: transparent;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        color: white;
+      }
+
+      #zone-message h4 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      /* Score Circle */
+      .score-circle-container {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+      }
+
+      .score-circle {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        background: linear-gradient(135deg, #18a6de, #034e77);
+        border-radius: 50%;
+        box-shadow: 0 10px 25px rgba(0, 129, 201, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 1s ease;
+        overflow: hidden;
+        color: white;
+      }
+
+      .score-circle::before {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        background: black;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .score-inner {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .score-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+        line-height: 1;
+      }
+
+      .score-max {
+        font-size: 1rem;
+        color: #9d9fa2;
+        margin-top: 5px;
+      }
+
+      .score-label {
+        font-size: 0.9rem;
+        color: #ffffff;
+        margin-top: 7px;
+
+        font-weight: 500;
+      }
+
+      /* Zone indicator dots */
+      .zone-indicator {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+      }
+
+      .zone-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin: 0 5px;
+        transition: transform 0.3s ease;
+      }
+
+      .zone-dot.green {
+        background-color: #4b966ebd;
+      }
+
+      .zone-dot.yellow {
+        background-color: #fab003a5;
+      }
+
+      .zone-dot.red {
+        background-color: #a23d53c5;
+      }
+
+      .zone-dot.active {
+        transform: scale(1.5);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Progress ring styling */
+      .circular-progress {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+      }
+
+      .circular-progress circle {
+        fill: none;
+        stroke-width: 8px;
+        stroke-linecap: round;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        transition: stroke-dashoffset 1s ease;
+      }
+
+      .progress-background {
+        stroke: #f1f4f7;
+      }
+
+      .progress-bar-circle {
+        stroke: url(#gradient);
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #000000;
+        color: white;
+        padding: 60px 0 30px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .footer h5 {
+        margin-bottom: 20px;
+        font-weight: 500;
+        color: var(--accent-color);
+      }
+
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .copyright {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+      }
+
+      @keyframes drawCurve {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .tooltip {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.85);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .moving-point {
+        r: 15;
+        fill: white;
+        cursor: pointer;
+        pointer-events: all;
+        opacity: 0;
+        transition: opacity 0.5s ease, fill 0.3s ease, transform 0.3s ease;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Media Queries */
+      @media (max-width: 768px) {
+        .curve-container,
+        .tooltip,
+        .moving-point {
+          display: none;
+        }
+
+        .header-section {
+          height: auto;
+          min-height: 100vh;
+          padding: 100px 20px;
+          background-attachment: scroll;
+        }
+
+        .line-1 {
+          left: 5%;
+        }
+        .line-2 {
+          display: none;
+        }
+        .line-3 {
+          left: 95%;
+        }
+
+        .header-section h1 {
+          font-size: 1.8rem;
+          line-height: 1.4;
+        }
+
+        .header-section .subtitle {
+          font-size: 1.5rem;
+        }
+
+        .titleb {
+          font-size: 1.8rem;
+        }
+
+        .scale-options-container {
+          flex-direction: column;
+        }
+
+        .scale-option {
+          margin: 5px 0;
+          height: auto;
+          padding: 12px;
+          flex: none;
+        }
+
+        .btn-gradient,
+        .btntwo {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .question-card {
+          width: 90%;
+          padding: 1.5rem;
+        }
+
+        .titleb {
+          font-size: 1.5rem;
+        }
+
+        .question-text {
+          padding: 1rem;
+          font-size: 1rem;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 991px) {
+        .scale-option {
+          font-size: 0.8rem;
+        }
+
+        .question-card {
+          padding: 2rem;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.5s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">
+          <img src="Logo/Narsafe logo.png" alt="NARSAFE Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Journal/index.html"
+                >Reflection Journal</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active">Self Check-In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/SelfStep/index.html">Self Step</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/weekly/index.html">Weekly Challenge</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center ms-3"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="header-section" id="intro">
+      <div class="grid-lines">
+        <div class="grid-line line-1"></div>
+        <div class="grid-line line-2"></div>
+        <div class="grid-line line-3"></div>
+        <div class="grid-line-horizontal line-h-1"></div>
+        <div class="grid-line-horizontal line-h-2"></div>
+      </div>
+      <div class="container">
+        <div class="header-content">
+          <h1 class="fade-in">Self Check-In</h1>
+          <h2 class="fade-in">Tes Tendensi Narsistik</h2>
+          <p class="subtitle fade-in">Mengapa tes ini begitu penting?</p>
+
+          <p class="lead fade-in">
+            Dengan tes ini, kamu dapat mengetahui pemahaman awal tentang
+            kecenderungan narsistik dalam diri kamu melalui proses refleksi yang
+            jujur. Tes ini dirancang sebagai cermin diri, membantumu melihat
+            aspek-aspek yang mungkin luput dari perhatian sehari-hari. Hasilnya
+            diklasifikasikan dalam tiga zona (Hijau, Kuning, Merah) untuk
+            memandu pengguna dalam merefleksikan diri dan mendapatkan
+            rekomendasi lanjutan yang tepat.
+          </p>
+
+          <button class="btn btn-gradient mt-4 fade-in" onclick="startTest()">
+            Mulai Tes Sekarang
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Section - IMPROVED DESIGN -->
+    <div class="container question-card hidden" id="quiz">
+      <div class="card-content">
+        <h1 class="titleb fade-in">Tes Tendensi Narsistik</h1>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p class="fw-semibold" id="progress-label"></p>
+
+        <div class="question-text fade-in" id="question-text"></div>
+
+        <div class="scale-options-container fade-in" id="options"></div>
+
+        <div class="text-center">
+          <button class="btn btntwo mt-4" onclick="nextQuestion()" disabled>
+            <i class="fas fa-arrow-right me-2"></i>Lanjut
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result Section -->
+    <div class="container text-center mt-5 hidden" id="result">
+      <h2 class="fw-bold">Hasil Tes Kamu</h2>
+      <p id="score-result" class="fs-5 mt-3"></p>
+      <div id="zone-message" class="text-start"></div>
+      <a href="/selfreflection/index.html" class="btn btntwo mt-4">Kembali</a>
+      <a href="#" class="btn btntwo mt-4" onclick="restartTest()">Ulangi Tes</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="footer-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 mb-4 mb-lg-0">
+            <h5>NARSAFE</h5>
+            <p>
+              Presented by <br />Silvia Manao | Maya Saira <br />
+              Club Karya Ilmiah Remaja SMAS Sultan Iskandar Muda Medan, Sumatera
+              Utara, Indonesia
+            </p>
+            <p>
+              Narsafe website bukan merupakan layanan psikolog profesional.
+              Semua konten yang disediakan bertujuan untuk memberikan informasi,
+              dukungan emosional, serta meningkatkan kesadaran tentang
+              pentingnya kesejahteraan mental. Jika Anda membutuhkan bantuan
+              profesional, kami sarankan untuk berkonsultasi dengan ahli
+              psikologi atau tenaga medis yang berlisensi.
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h5>Support</h5>
+            <ul class="list-unstyled">
+              <li><a href="Footer/FAQ.html">FAQ</a></li>
+              <li>
+                <a href="Footer/terms_of_service.html">Terms of Service</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center copyright">
+          <p>&copy; 2025 NARSAFE. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // Page loading animation
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          document.querySelector(".loader").classList.add("hidden");
+        }, 500);
+      });
+
+      // Quiz questions
+      const questions = [
+        "Saya merasa nyaman hanya jika menjadi pusat perhatian.",
+        "Saya sering membandingkan diri saya dengan orang lain untuk merasa lebih baik.",
+        "Saya percaya bahwa saya punya kualitas istimewa yang tidak dimiliki kebanyakan orang.",
+        "Saya merasa kesal jika orang lain tidak menyadari pencapaian saya.",
+        "Saya terbuka menerima kritik dan menjadikannya sebagai bahan evaluasi diri.",
+        "Saya merasa tersaingi saat melihat teman saya lebih sukses dari saya.",
+        "Saya sering merasa harus terlihat sempurna di depan orang lain.",
+        "Saya bisa menghargai kesuksesan orang lain tanpa merasa minder.",
+        "Saya sering merasa bahwa saya pantas mendapatkan perlakuan khusus.",
+        "Saya mampu membangun kepercayaan diri tanpa harus bergantung pada pujian orang lain.",
+        "Saya merasa cemas atau tidak nyaman ketika tidak mendapat validasi dari media sosial atau orang sekitar.",
+        "Saya merasa tidak masalah jika bukan saya yang paling menonjol dalam suatu kelompok.",
+        "Saya lebih fokus pada citra diri dibandingkan dengan proses berkembangnya diri saya.",
+        "Saya bisa menerima ketika ada orang yang lebih unggul dari saya tanpa merasa rendah diri.",
+        "Saya sering merasa bahwa dunia belum cukup menghargai potensi saya.",
+      ];
+
+      // Scale options
+      const scale = [
+        "Sangat Tidak Setuju",
+        "Tidak Setuju",
+        "Netral",
+        "Setuju",
+        "Sangat Setuju",
+      ];
+
+      let current = 0;
+      let totalScore = 0;
+      let selectedAnswer = null;
+
+      // Start the test
+      function startTest() {
+        document.getElementById("intro").classList.add("hidden");
+        document.getElementById("footer-section").classList.add("hidden");
+        document.getElementById("quiz").classList.remove("hidden");
+        showQuestion();
+      }
+
+      // Display current question
+      function showQuestion() {
+        document.getElementById("question-text").innerText = questions[current];
+        document.getElementById("progress-label").innerText = `Pertanyaan ${
+          current + 1
+        } dari 15`;
+        document.getElementById("progress-bar").style.width = `${
+          ((current + 1) / questions.length) * 100
+        }%`;
+
+        const optionsDiv = document.getElementById("options");
+        optionsDiv.innerHTML = "";
+
+        // Create scale options in a horizontal layout
+        for (let i = 1; i <= 5; i++) {
+          const option = document.createElement("label");
+          option.className = "scale-option";
+          option.innerHTML = `
+            <input type="radio" name="answer" value="${i}">
+            ${scale[i - 1]}
+          `;
+          option.onclick = function () {
+            selectOption(this);
+          };
+          optionsDiv.appendChild(option);
+        }
+
+        // Reset selection
+        selectedAnswer = null;
+      }
+
+      function showQuestion() {
+        document.getElementById("question-text").innerText = questions[current];
+        document.getElementById("progress-label").innerText = `Pertanyaan ${
+          current + 1
+        } dari 15`;
+        document.getElementById("progress-bar").style.width = `${
+          ((current + 1) / questions.length) * 100
+        }%`;
+
+        const optionsDiv = document.getElementById("options");
+        optionsDiv.innerHTML = "";
+
+        // Create scale options
+        for (let i = 1; i <= 5; i++) {
+          const option = document.createElement("label");
+          option.className = "scale-option";
+          option.innerHTML = `
+            <input type="radio" name="answer" value="${i}">
+            ${scale[i - 1]}
+          `;
+          option.onclick = function () {
+            selectOption(this);
+          };
+          optionsDiv.appendChild(option);
+        }
+
+        // Reset selection dan disable button
+        selectedAnswer = null;
+        document.querySelector(".btntwo").disabled = true;
+      }
+
+      // Handle option selection
+      function selectOption(el) {
+        const allOptions = document.querySelectorAll(".scale-option");
+        allOptions.forEach((opt) => opt.classList.remove("selected"));
+        el.classList.add("selected");
+        el.querySelector("input").checked = true;
+        selectedAnswer = el.querySelector("input").value;
+
+        // Aktifkan button Lanjut
+        document.querySelector(".btntwo").disabled = false;
+      }
+
+      // Move to next question or show results
+      function nextQuestion() {
+        totalScore += parseInt(selectedAnswer);
+        current++;
+
+        if (current < questions.length) {
+          showQuestion();
+        } else {
+          showResult();
+        }
+      }
+
+      // Display test results
+      function showResult() {
+        document.getElementById("quiz").classList.add("hidden");
+        document.getElementById("result").classList.remove("hidden");
+        document.getElementById("footer-section").classList.remove("hidden");
+
+        // Score calculation
+        const score = totalScore;
+        const maxScore = 75;
+        const percentage = (score / maxScore) * 100;
+
+        // Create the circular score display
+        let scoreResultDiv = document.getElementById("score-result");
+
+        // Set up SVG for circular progress
+        const circumference = 2 * Math.PI * 86; // r=86 (180px width - stroke width)
+        const offset = circumference - (percentage / 100) * circumference;
+
+        scoreResultDiv.innerHTML = `
+      <div class="score-circle-container">
+        <div class="score-circle">
+          <svg class="circular-progress" viewBox="0 0 180 180">
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#18a6de" />
+                <stop offset="100%" stop-color="#1471a3" />
+              </linearGradient>
+            </defs>
+            <circle class="progress-background" cx="90" cy="90" r="86" />
+            <circle class="progress-bar-circle" cx="90" cy="90" r="86" 
+                   stroke-dasharray="${circumference}" 
+                   stroke-dashoffset="${offset}" />
+          </svg>
+          <div class="score-inner">
+            <p class="score-label">Skor Kamu</p>
+            <p class="score-value">${score}</p>
+            <p class="score-max">dari ${maxScore}</p>
+        
+          </div>
+        </div>
+      </div>
+      <div class="zone-indicator">
+        <div class="zone-dot green ${totalScore <= 34 ? "active" : ""}"></div>
+        <div class="zone-dot yellow ${
+          totalScore > 34 && totalScore <= 54 ? "active" : ""
+        }"></div>
+        <div class="zone-dot red ${totalScore > 54 ? "active" : ""}"></div>
+      </div>
+    `;
+
+        let zone = "",
+          message = "",
+          bgColor = "";
+
+        if (totalScore <= 34) {
+          zone = "Hijau – Seimbang";
+          message = `<p><strong>Refleksi:</strong> Kamu punya rasa percaya diri yang sehat dan empati yang baik. Pertahankan keseimbangan ini dengan tetap sadar diri dan terbuka terhadap masukan.</p>
+              <p><strong>Rekomendasi:</strong></p>
+              <p>🔎 Coba lanjut ke Modul Literasi Diri – Level Basic.</p>
+              <p>📔 Mulai isi Jurnal Refleksi Diri harianmu.</p>
+              <p>📩 Kirim Surat Untuk Diri Sendiri sebagai pengingat positif.</p>
+              <p>📅 Ikuti Checklist Harian untuk menjaga pola sadar diri.</p>`;
+          bgColor = "rgba(75, 192, 192, 0.3)";
+        } else if (totalScore <= 54) {
+          zone = "Kuning – Cenderung Narsistik";
+          message = `<p><strong>Refleksi:</strong> Kamu mungkin mulai terlalu fokus pada validasi eksternal. Yuk, gali lebih dalam apa yang membuat kamu butuh pengakuan terus-menerus.</p>
+              <p><strong>Rekomendasi:</strong></p>
+              <p>🧠 Baca Modul Medium: Self-Love vs Narsistik.</p>
+              <p>✍️ Coba isi Jurnal Refleksi Diri, khususnya soal "validasi" dan "pengakuan".</p>
+              <p>💬 Ambil 1 kartu dari Reflection Cards setiap hari.</p>
+              <p>🎯 Ikuti Tantangan Empati 7 Hari.</p>
+              <p>🔈 Dengarkan 1 sesi Monolog Dalam Diri malam ini.</p>`;
+          bgColor = "rgba(255, 205, 86, 0.3)";
+        } else {
+          zone = "Merah – Tinggi";
+          message = `<p><strong>Refleksi:</strong> Mungkin kamu merasa harus selalu jadi yang terbaik untuk merasa cukup. Ini saatnya refleksi lebih dalam dan mulai ubah perspektif.</p>
+              <p><strong>Rekomendasi:</strong></p>
+              <p>💡 Ikuti Modul Advance: Star Syndrome dan Dampaknya.</p>
+              <p>🗣️ Tulis Surat untuk Diri Sendiri saat kamu merasa ingin banget diakui.</p>
+              <p>🎧 Dengarkan Monolog Dalam Diri dengan tema "cukup itu keren.</p>
+              <p>🔍 Gunakan Reality Check Generator untuk menetralkan ekspektasi berlebihan.</p>
+              <p>📩 Pertimbangkan kirim pesan ke Kontak & Dukungan (mentor/komunitas).</p>`;
+          bgColor = "rgba(255, 99, 132, 0.3)";
+        }
+
+        const zoneElement = document.getElementById("zone-message");
+        zoneElement.innerHTML = `<h4>${zone}</h4>${message}`;
+        zoneElement.style.backgroundColor = bgColor;
+        zoneElement.style.borderLeft = `4px solid ${bgColor.replace(
+          "0.1",
+          "1"
+        )}`;
+
+        // Animation for the circle progress
+        setTimeout(() => {
+          document.querySelector(
+            ".progress-bar-circle"
+          ).style.strokeDashoffset = offset;
+        }, 100);
+      }
+      // Restart the test
+      function restartTest() {
+        current = 0;
+        totalScore = 0;
+        selectedAnswer = null;
+        document.getElementById("result").classList.add("hidden");
+        document.getElementById("quiz").classList.remove("hidden");
+        showQuestion();
+      }
+
+      document.addEventListener("keydown", function (event) {
+        // Jika tombol yang ditekan adalah Enter
+        if (event.key === "Enter") {
+          nextQuestion(); // panggil fungsi tombol
+        }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

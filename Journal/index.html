@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <link rel="icon" href="/Image/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monthly Reflection Journal</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:wght@300..800&family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+  <style>
+    :root {
+      --primary-color: #1a2a42;
+      --secondary-color: #2c3e50;
+      --accent-color: #3498db;
+      --text-color: #ecf0f1;
+      --muted-text: #bdc3c7;
+      --highlight-color: #4fa3e0;
+      --success-color: #2ecc71;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      color: var(--text-color);
+      line-height: 1.8;
+      min-height: 100vh;
+      background: linear-gradient(185deg, #000000, #01121f);
+      font-family: "Inter", sans-serif;
+      padding-top: 100px; /* Untuk navbar fixed */
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgb(0, 0, 0);
+      box-shadow: 0 2px 10px rgba(30, 30, 30, 0.836);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 10px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      line-height: 2.5rem;
+    }
+
+    .logodark {
+      max-height: 40px;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 300;
+      padding: 0.7rem 1.2rem !important;
+      margin: 0 3px;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      background-color: rgba(3, 101, 140, 0.3) !important;
+    }
+
+    .nav-link.active {
+      background-color: #3498db !important;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 8px rgba(3, 101, 140, 0.3);
+    }
+
+    .navbar-toggler {
+      background: transparent;
+      padding: 0.5rem !important;
+      border: none;
+      width: 40px; /* Atur lebar tetap */
+      height: 40px; /* Atur tinggi tetap */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar-toggler-icon {
+      display: inline-block;
+      width: 1.2em;
+      height: 1.2em;
+      vertical-align: middle;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='shape' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none !important; /* Hilangkan box shadow saat focus */
+      outline: none;
+    }
+
+    /* Header */
+    .header-section {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      align-items: center;
+      padding: 10rem 6rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .header-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.5;
+      background-image: url(/Image/ko.jpg);
+      background-size: cover;
+      background-repeat: repeat;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      background-color: #18a6de;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: #18a6de;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--highlight-color);
+    }
+
+    /* Intro Section */
+    .intro {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      text-align: justify;
+    }
+
+    /* Features */
+    .features {
+      margin: 40px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .feature {
+      flex: 1 1 300px;
+      max-width: 350px;
+      background-color: rgb(13, 33, 60);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .feature i {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+
+    /* Journal Container */
+    .journal-container {
+      background-color: rgb(13, 33, 60);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin: 30px 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      position: relative;
+      border-top: 5px solid #18a6de;
+    }
+
+    /* Form Elements */
+    #journal-questions {
+      margin-bottom: 30px;
+    }
+
+    .question {
+      margin-bottom: 25px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .question.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: white;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid rgba(55, 50, 50, 0.1);
+      background-color: rgba(30, 62, 95, 0.831);
+      color: white;
+      font-size: 1rem;
+      resize: vertical;
+      transition: var(--transition);
+      min-height: 120px;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+    }
+
+    /* Buttons */
+    button {
+      background: linear-gradient(
+        135deg,
+        var(--accent-color),
+        var(--highlight-color)
+      );
+      color: white;
+      border-radius: 10px;
+      padding: 12px 24px;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .btn-save {
+      background: rgb(13, 33, 60);
+      border: 2px solid #18a6de;
+      color: #18a6de;
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, #710223, #c70528);
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* Day Counter */
+    .day-counter {
+      background-color: rgb(13, 33, 60);
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+    }
+
+    .day-counter span {
+      color: #18a6de;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* History Cards */
+    .card {
+      background-color: rgba(44, 62, 80, 0.7);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-title {
+      font-weight: 300;
+      color: var(--highlight-color);
+      margin: 0;
+    }
+
+    .card-date {
+      color: var(--muted-text);
+      font-size: 0.9rem;
+    }
+
+    .card-content p {
+      margin-bottom: 15px;
+    }
+
+    .card-content p strong {
+      color: var(--highlight-color);
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background-color: rgba(44, 62, 80, 0.5);
+      border-radius: 4px;
+      margin: 30px 0;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        var(--accent-color),
+        var(--highlight-color)
+      );
+      border-radius: 4px;
+      transition: width 0.4s ease;
+      width: 2%;
+    }
+
+    /* Tabs */
+    .view-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      background-color: rgba(44, 62, 80, 0.5);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tab.active {
+      background-color: var(--accent-color);
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    }
+
+    .tab:hover:not(.active) {
+      background-color: rgba(44, 62, 80, 0.8);
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background-color: #1a2a42;
+      color: white;
+      border-radius: 8px;
+      border-left: 8px solid white;
+      box-shadow: var(--shadow);
+      transform: translateX(150%);
+      transition: transform 0.4s ease;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animated {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .delayed-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delayed-2 {
+      animation-delay: 0.4s;
+    }
+
+    .delayed-3 {
+      animation-delay: 0.6s;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .header-section {
+        padding: 60px 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .feature {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      .buttons-container {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .tab {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      body {
+        padding-top: 60px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .header-section {
+        padding: 40px 0;
+      }
+
+      .journal-container {
+        padding: 20px;
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+    }
+  </style>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">
+          <img
+            src="/Image/Narsafe logo 2.png"
+            alt="Narsafe Logo"
+            class="logodark"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/Journal/index.html"
+                >Reflection Journal</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/selfreflection/index.html"
+                >Self Check-In</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/SelfStep/index.html">Self Step</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Weekly Challenge</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center ms-3"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="header-section" id="intro">
+      <div class="header-background"></div>
+      <div class="container">
+        <h1 class="animated">Monthly Self Reflection Journal</h1>
+        <p class="animated delayed-1">
+          Temukan keseimbangan dan makna hidup melalui perjalanan refleksi diri
+          yang penuh kesadaran dan rasa syukur.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="intro animated delayed-1">
+        <p>
+          Fitur dirancang untuk membantu kamu melakukan refleksi ringan setiap
+          hari. Dengan pertanyaan-pertanyaan yang mudah dan menenangkan, jurnal
+          ini mendorong kamu untuk lebih fokus pada hal-hal positif, rasa
+          syukur, dan hubungan sosial yang sehat.
+        </p>
+        <p>
+          Tujuan utama jurnal ini adalah mengurangi gejala star syndrome dan
+          narsistik dengan membantumu lebih menghargai diri sendiri dan orang
+          lain, serta menikmati perjalanan hidup tanpa tekanan untuk selalu
+          menjadi pusat perhatian.
+        </p>
+      </div>
+
+      <!-- Features -->
+      <div class="features animated delayed-2">
+        <div class="feature">
+          <i class="fas fa-edit"></i>
+          <h3>Isi Pertanyaan Setiap Hari</h3>
+          <p>
+            Di setiap hari yang berbeda, kamu akan diminta untuk menjawab
+            pertanyaan-pertanyaan sederhana tentang apa yang kamu syukuri,
+            bagaimana perasaanmu, dan bagaimana kamu bisa lebih rendah hati.
+          </p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-chart-line"></i>
+          <h3>Lihat Perkembangan Diri</h3>
+          <p>
+            Setiap jawaban yang kamu berikan akan disimpan dalam localStorage
+            atau bisa kamu unduh untuk melihat perkembangan refleksi diri secara
+            berkala.
+          </p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-sync-alt"></i>
+          <h3>Ulangi setelah 30 Hari</h3>
+          <p>
+            Setelah menyelesaikan 30 hari jurnal ini, semua pertanyaan akan
+            di-reset dan kamu bisa memulai perjalanan refleksi diri yang baru!
+          </p>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="view-toggle animated delayed-3">
+        <div class="tab active" id="journal-tab">Jurnal Hari Ini</div>
+        <div class="tab" id="history-tab">Riwayat Jurnal</div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-container animated delayed-3">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <!-- Journal Section -->
+      <div id="journal-section">
+        <div class="day-counter animated">
+          Hari <span id="current-day">1</span> dari 30
+        </div>
+
+        <div class="journal-container animated delayed-2">
+          <div id="journal-questions">
+            <!-- Questions will be loaded here by JavaScript -->
+          </div>
+
+          <div class="buttons-container">
+            <button id="save-btn" class="btn-save">
+              <i class="fas fa-save"></i> Simpan Jurnal
+            </button>
+            <button id="download-btn" class="btn-download">
+              <i class="fas fa-file-download"></i> Unduh PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- History Section -->
+      <div id="history-container">
+        <h2>Riwayat Jurnal Anda</h2>
+        <p>Berikut adalah entri jurnal yang telah Anda simpan sebelumnya:</p>
+        <div id="entries-container">
+          <!-- Entries will be loaded here by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      <i class="fas fa-check-circle"></i>
+      <span id="notification-message">Jurnal berhasil disimpan!</span>
+    </div>
+    <script>
+      // Definisi pertanyaan untuk setiap hari
+      const journalQuestions = {
+        1: [
+          "Apa hal kecil yang membuatmu tersenyum hari ini?",
+          "Apa yang bisa kamu syukuri hari ini?",
+          "Siapa yang kamu hargai di sekitar kamu?",
+        ],
+        2: [
+          "Apa yang membuatmu merasa tenang hari ini?",
+          "Apa yang kamu lakukan untuk menjaga keseimbangan dirimu?",
+          "Apa yang kamu lakukan untuk membantu orang lain tanpa mengharapkan balasan?",
+        ],
+        3: [
+          "Apa yang bisa kamu banggakan hari ini tanpa harus mendapat pengakuan?",
+          "Apa hal sederhana yang bisa kamu nikmati hari ini?",
+          "Apa yang kamu syukuri dalam dirimu sendiri?",
+        ],
+        4: [
+          "Siapa yang membuat harimu lebih baik hari ini?",
+          "Apa yang kamu lakukan untuk menjaga pikiran positif?",
+          "Apa yang membuatmu merasa puas hari ini tanpa membandingkan dirimu dengan orang lain?",
+        ],
+        5: [
+          "Apa yang membuatmu merasa dihargai oleh diri sendiri?",
+          "Apa yang membuatmu merasa bahagia tanpa memikirkan apa yang orang lain pikirkan?",
+          "Bagaimana kamu bisa lebih sabar hari ini?",
+        ],
+        6: [
+          "Apa yang bisa kamu lakukan hari ini untuk lebih sabar dengan dirimu sendiri?",
+          "Siapa yang membuatmu merasa diterima dan dihargai?",
+          "Apa yang kamu nikmati hari ini tanpa harus menjadi pusat perhatian?",
+        ],
+        7: [
+          "Apa yang kamu lakukan hari ini untuk menjaga hubungan yang baik dengan orang lain?",
+          "Apa yang membuatmu merasa puas dengan dirimu tanpa mencari validasi eksternal?",
+          "Apa yang kamu syukuri dalam interaksi sosial hari ini?",
+        ],
+        8: [
+          "Apa yang bisa kamu lakukan untuk lebih mendengarkan orang lain?",
+          "Apa yang kamu syukuri tentang hubunganmu dengan orang terdekat?",
+          "Apa yang membuatmu merasa nyaman menjadi dirimu sendiri hari ini?",
+        ],
+        9: [
+          "Apa hal kecil yang bisa membuatmu merasa lebih rendah hati hari ini?",
+          "Siapa yang kamu bantu hari ini, tanpa mengharapkan pujian?",
+          "Apa yang bisa kamu pelajari dari orang lain hari ini?",
+        ],
+        10: [
+          "Apa yang kamu lakukan untuk menjaga keseimbangan antara kerja dan istirahat?",
+          "Apa yang bisa kamu lakukan untuk lebih menghargai orang lain?",
+          "Bagaimana kamu merasa saat memberi tanpa mengharapkan balasan?",
+        ],
+        11: [
+          "Apa yang membuatmu merasa bersyukur terhadap hidupmu hari ini?",
+          "Apa yang bisa kamu lakukan untuk lebih menghargai diri sendiri tanpa membandingkan dengan orang lain?",
+          "Siapa yang kamu hargai hari ini?",
+        ],
+        12: [
+          "Apa hal kecil yang bisa kamu lakukan untuk membuat hari ini lebih menyenangkan?",
+          "Bagaimana kamu mengelola perasaan tidak aman hari ini?",
+          "Apa yang membuatmu merasa cukup dengan diri sendiri?",
+        ],
+        13: [
+          "Apa yang bisa kamu syukuri dalam hubungan dengan orang lain?",
+          "Apa hal yang membuatmu merasa nyaman dalam kesendirian?",
+          "Bagaimana kamu menjaga rasa tenang saat dihadapkan dengan kritik?",
+        ],
+        14: [
+          "Apa yang bisa kamu lakukan untuk lebih fokus pada hal-hal positif hari ini?",
+          "Apa yang kamu syukuri tentang hal-hal kecil di hidupmu?",
+          "Apa yang membuatmu merasa bersyukur atas apa yang sudah kamu capai?",
+        ],
+        15: [
+          "Apa yang kamu lakukan untuk merasa lebih tenang dan tidak terburu-buru?",
+          "Bagaimana kamu menjaga hubungan baik dengan orang-orang di sekitar kamu?",
+          "Apa yang bisa kamu lakukan untuk lebih mengapresiasi hal-hal sederhana?",
+        ],
+        16: [
+          "Apa yang membuatmu merasa puas dengan diri sendiri tanpa pengakuan orang lain?",
+          "Siapa yang kamu bantu dengan tulus hari ini?",
+          "Apa yang bisa kamu lakukan untuk lebih menghargai momen kecil dalam hidupmu?",
+        ],
+        17: [
+          "Apa yang membuatmu merasa dihargai meski tanpa mendapat perhatian publik?",
+          "Apa yang kamu nikmati hari ini tanpa membandingkan dengan orang lain?",
+          "Bagaimana kamu menjaga keseimbangan antara ekspektasi diri dan kenyataan?",
+        ],
+        18: [
+          "Apa yang kamu lakukan hari ini yang membuatmu merasa baik dengan diri sendiri?",
+          "Apa yang kamu syukuri tentang proses, bukan hanya hasil?",
+          "Siapa yang kamu bantu tanpa mengharapkan pujian?",
+        ],
+        19: [
+          "Apa hal sederhana yang membuatmu merasa tenang hari ini?",
+          "Apa yang kamu lakukan untuk lebih banyak bersyukur terhadap diri sendiri?",
+          "Siapa yang kamu hargai karena kesederhanaannya?",
+        ],
+        20: [
+          "Apa yang bisa kamu lakukan untuk lebih mendengarkan orang lain tanpa menghakimi?",
+          "Apa yang membuatmu merasa baik tentang diri sendiri hari ini?",
+          "Apa yang bisa kamu syukuri tentang dirimu hari ini?",
+        ],
+        21: [
+          "Apa yang kamu nikmati dalam kesendirianmu hari ini?",
+          "Siapa yang membuatmu merasa lebih baik hari ini?",
+          "Apa hal positif yang bisa kamu fokuskan dalam dirimu?",
+        ],
+        22: [
+          "Apa yang bisa kamu lakukan untuk lebih rendah hati dalam interaksi sosialmu?",
+          "Apa yang kamu pelajari dari orang lain hari ini?",
+          "Bagaimana kamu menjaga kedamaian dalam dirimu?",
+        ],
+        23: [
+          "Apa yang kamu lakukan untuk lebih menjaga hubungan dengan orang lain?",
+          "Siapa yang membuatmu merasa diterima tanpa syarat?",
+          "Apa yang membuatmu merasa baik hari ini tanpa perlu menjadi pusat perhatian?",
+        ],
+        24: [
+          "Apa yang bisa kamu lakukan untuk lebih menikmati perjalanan hidup ini, bukan hanya hasilnya?",
+          "Apa yang membuatmu merasa cukup dengan dirimu sendiri?",
+          "Siapa yang kamu beri apresiasi hari ini?",
+        ],
+        25: [
+          "Apa yang kamu syukuri tentang hal-hal sederhana dalam hidupmu?",
+          "Bagaimana kamu merawat kesehatan mentalmu hari ini?",
+          "Apa yang bisa kamu lakukan untuk lebih memahami perasaan orang lain?",
+        ],
+        26: [
+          "Apa yang membuatmu merasa lebih baik tentang diri sendiri hari ini?",
+          "Apa yang kamu syukuri dalam hubunganmu dengan orang lain?",
+          "Apa yang bisa kamu lakukan untuk lebih sering memberi tanpa berharap mendapat pujian?",
+        ],
+        27: [
+          "Apa yang kamu lakukan untuk lebih santai dan menikmati hidup?",
+          "Siapa yang membuatmu merasa lebih percaya diri tanpa merasa tertekan?",
+          "Apa yang membuatmu merasa baik tanpa perlu pengakuan eksternal?",
+        ],
+        28: [
+          "Apa yang kamu syukuri tentang dirimu hari ini?",
+          "Apa yang bisa kamu lakukan untuk lebih menghargai orang lain?",
+          "Bagaimana kamu menjaga keseimbangan dalam hidupmu?",
+        ],
+        29: [
+          "Apa hal kecil yang bisa membuatmu merasa lebih rendah hati hari ini?",
+          "Apa yang kamu nikmati hari ini tanpa membandingkan diri dengan orang lain?",
+          "Siapa yang kamu bantu tanpa mengharapkan apa-apa?",
+        ],
+        30: [
+          "Apa pencapaian yang kamu syukuri dalam 30 hari ini?",
+          "Apa yang bisa kamu lakukan untuk lebih menikmati hidup tanpa perlu validasi?",
+          "Apa yang kamu pelajari tentang dirimu sendiri selama sebulan ini?",
+        ],
+      };
+
+      // Variable untuk menyimpan state aplikasi
+      let currentDay = 1;
+      let isJournalCompletedToday = false;
+      let activeTab = "journal";
+
+      // DOM Elements
+      const journalQuestionsContainer =
+        document.getElementById("journal-questions");
+      const currentDayElement = document.getElementById("current-day");
+      const saveButton = document.getElementById("save-btn");
+      const downloadButton = document.getElementById("download-btn");
+      const journalTab = document.getElementById("journal-tab");
+      const historyTab = document.getElementById("history-tab");
+      const journalSection = document.getElementById("journal-section");
+      const historyContainer = document.getElementById("history-container");
+      const entriesContainer = document.getElementById("entries-container");
+      const progressBar = document.getElementById("progress-bar");
+      const notification = document.getElementById("notification");
+      const notificationMessage = document.getElementById(
+        "notification-message"
+      );
+
+      // Fungsi untuk menampilkan notifikasi
+      function showNotification(message) {
+        notificationMessage.textContent = message;
+        notification.classList.add("show");
+        setTimeout(() => {
+          notification.classList.remove("show");
+        }, 3000);
+      }
+
+      // Fungsi untuk memuat pertanyaan hari ini
+      function loadTodaysQuestions() {
+        // Kosongkan container pertanyaan
+        journalQuestionsContainer.innerHTML = "";
+
+        // Dapatkan pertanyaan untuk hari ini
+        const todaysQuestions = journalQuestions[currentDay];
+
+        // Buat elemen untuk setiap pertanyaan
+        todaysQuestions.forEach((question, index) => {
+          const questionDiv = document.createElement("div");
+          questionDiv.className = "question";
+          questionDiv.id = `question-${index + 1}`;
+
+          const label = document.createElement("label");
+          label.setAttribute("for", `answer-${index + 1}`);
+          label.textContent = `${index + 1}. ${question}`;
+
+          const textarea = document.createElement("textarea");
+          textarea.id = `answer-${index + 1}`;
+          textarea.placeholder = "Tulis jawabanmu di sini...";
+
+          // Cek apakah ada jawaban yang tersimpan untuk hari ini
+          const savedEntry = getSavedEntryForToday();
+          if (savedEntry && savedEntry.answers && savedEntry.answers[index]) {
+            textarea.value = savedEntry.answers[index];
+          }
+
+          questionDiv.appendChild(label);
+          questionDiv.appendChild(textarea);
+
+          journalQuestionsContainer.appendChild(questionDiv);
+
+          // Animasi pertanyaan
+          setTimeout(() => {
+            questionDiv.classList.add("active");
+          }, 100 * (index + 1));
+        });
+
+        // Update tampilan hari
+        currentDayElement.textContent = currentDay;
+
+        // Update progress bar
+        updateProgressBar();
+      }
+
+      // Fungsi untuk update progress bar
+      function updateProgressBar() {
+        const progress = (currentDay / 30) * 100;
+        progressBar.style.width = `${progress}%`;
+      }
+
+      // Fungsi untuk menyimpan jawaban
+      function saveJournal() {
+        const answers = [];
+
+        // Dapatkan semua jawaban
+        const textareas =
+          journalQuestionsContainer.querySelectorAll("textarea");
+        let allAnswered = true;
+
+        textareas.forEach((textarea) => {
+          answers.push(textarea.value);
+          if (!textarea.value.trim()) {
+            allAnswered = false;
+          }
+        });
+
+        if (!allAnswered) {
+          showNotification("Harap isi semua pertanyaan sebelum menyimpan.");
+          return;
+        }
+
+        // Format data untuk disimpan
+        const today = new Date();
+        const entryData = {
+          day: currentDay,
+          date: today.toISOString(),
+          answers: answers,
+          questions: journalQuestions[currentDay],
+        };
+
+        // Simpan di localStorage
+        saveEntryToLocalStorage(entryData);
+
+        // Tandai bahwa jurnal untuk hari ini sudah selesai
+        markJournalAsCompletedToday();
+
+        // Tampilkan notifikasi
+        showNotification("Jurnal berhasil disimpan!");
+
+        // Update UI
+        loadTodaysEntries();
+      }
+
+      // Fungsi untuk menandai jurnal sebagai selesai untuk hari ini
+      function markJournalAsCompletedToday() {
+        isJournalCompletedToday = true;
+        localStorage.setItem("lastJournalDate", new Date().toDateString());
+      }
+
+      // Fungsi untuk memeriksa apakah jurnal sudah diisi hari ini
+      function checkIfJournalCompletedToday() {
+        const lastJournalDate = localStorage.getItem("lastJournalDate");
+        const today = new Date().toDateString();
+        return lastJournalDate === today;
+      }
+
+      // Fungsi untuk menyimpan entri ke localStorage
+      function saveEntryToLocalStorage(entryData) {
+        // Dapatkan entri yang sudah ada
+        let entries = getEntriesFromLocalStorage();
+
+        // Check if entry for this day already exists
+        const existingEntryIndex = entries.findIndex(
+          (entry) => entry.day === entryData.day
+        );
+
+        if (existingEntryIndex !== -1) {
+          // Update entri yang sudah ada
+          entries[existingEntryIndex] = entryData;
+        } else {
+          // Tambahkan entri baru
+          entries.push(entryData);
+        }
+
+        // Simpan kembali ke localStorage
+        localStorage.setItem("journalEntries", JSON.stringify(entries));
+      }
+
+      // Fungsi untuk mendapatkan entri dari localStorage
+      function getEntriesFromLocalStorage() {
+        const entriesJSON = localStorage.getItem("journalEntries");
+        return entriesJSON ? JSON.parse(entriesJSON) : [];
+      }
+
+      // Fungsi untuk mendapatkan entri yang disimpan untuk hari ini
+      function getSavedEntryForToday() {
+        const entries = getEntriesFromLocalStorage();
+        return entries.find((entry) => entry.day === currentDay);
+      }
+
+      // Fungsi untuk memuat hari terakhir yang dicatat
+      function loadLastRecordedDay() {
+        const entries = getEntriesFromLocalStorage();
+        if (entries.length > 0) {
+          // Sort entries by day
+          entries.sort((a, b) => b.day - a.day);
+          currentDay = entries[0].day;
+
+          // Jika sudah hari ke-30, reset ke hari 1
+          if (currentDay >= 30) {
+            currentDay = 1;
+          } else {
+            // Jika sudah mengisi jurnal hari ini, lanjut ke hari berikutnya
+            if (checkIfJournalCompletedToday()) {
+              currentDay = Math.min(currentDay + 1, 30);
+            }
+          }
+        }
+
+        return currentDay;
+      }
+
+      // Fungsi untuk memuat entri hari ini
+      function loadTodaysEntries() {
+        const entries = getEntriesFromLocalStorage();
+        entriesContainer.innerHTML = "";
+
+        if (entries.length === 0) {
+          entriesContainer.innerHTML =
+            "<p>Belum ada entri jurnal yang disimpan.</p>";
+          return;
+        }
+
+        // Sort entries by date (newest first)
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Render each entry
+        entries.forEach((entry) => {
+          const entryDate = new Date(entry.date);
+          const formattedDate = entryDate.toLocaleDateString("id-ID", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const cardHeader = document.createElement("div");
+          cardHeader.className = "card-header";
+
+          const cardTitle = document.createElement("h3");
+          cardTitle.className = "card-title";
+          cardTitle.textContent = `Hari ${entry.day}`;
+
+          const cardDate = document.createElement("div");
+          cardDate.className = "card-date";
+          cardDate.textContent = formattedDate;
+
+          cardHeader.appendChild(cardTitle);
+          cardHeader.appendChild(cardDate);
+
+          const cardContent = document.createElement("div");
+          cardContent.className = "card-content";
+
+          entry.questions.forEach((question, index) => {
+            const questionEl = document.createElement("p");
+            questionEl.innerHTML = `<strong>${question}</strong>`;
+            cardContent.appendChild(questionEl);
+
+            const answerEl = document.createElement("p");
+            answerEl.textContent = entry.answers[index] || "-";
+            cardContent.appendChild(answerEl);
+          });
+
+          const cardActions = document.createElement("div");
+          cardActions.className = "card-actions";
+
+          const downloadEntryBtn = document.createElement("button");
+          downloadEntryBtn.className = "btn-download btn-sm";
+          downloadEntryBtn.innerHTML =
+            '<i class="fas fa-file-download"></i> Unduh';
+          downloadEntryBtn.addEventListener("click", () => {
+            generatePDF(entry);
+          });
+
+          cardActions.appendChild(downloadEntryBtn);
+
+          card.appendChild(cardHeader);
+          card.appendChild(cardContent);
+          card.appendChild(cardActions);
+
+          entriesContainer.appendChild(card);
+        });
+      }
+
+      // Fungsi untuk mengunduh PDF
+      function generatePDF(entry = null) {
+        // Jspdf and html2canvas has been loaded via CDN in the HTML
+        const { jsPDF } = window.jspdf;
+
+        // Buat data yang akan dimasukkan ke PDF
+        let content;
+        let title;
+
+        if (entry) {
+          // Gunakan entry spesifik
+          const entryDate = new Date(entry.date);
+          const formattedDate = entryDate.toLocaleDateString("id-ID", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+          title = `Jurnal Refleksi Diri - Hari ${entry.day} (${formattedDate})`;
+
+          content = document.createElement("div");
+          content.innerHTML = `<h2>${title}</h2>`;
+
+          entry.questions.forEach((question, index) => {
+            const questionEl = document.createElement("p");
+            questionEl.innerHTML = `<strong>${index + 1}. ${question}</strong>`;
+            content.appendChild(questionEl);
+
+            const answerEl = document.createElement("p");
+            answerEl.textContent = entry.answers[index] || "-";
+            content.appendChild(answerEl);
+          });
+        } else {
+          // Gunakan jawaban dari form saat ini
+          const today = new Date();
+          const formattedDate = today.toLocaleDateString("id-ID", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+          title = `Jurnal Refleksi Diri - Hari ${currentDay} (${formattedDate})`;
+
+          content = document.createElement("div");
+          content.innerHTML = `<h2>${title}</h2>`;
+
+          const todaysQuestions = journalQuestions[currentDay];
+          const textareas =
+            journalQuestionsContainer.querySelectorAll("textarea");
+
+          todaysQuestions.forEach((question, index) => {
+            const questionEl = document.createElement("p");
+            questionEl.innerHTML = `<strong>${index + 1}. ${question}</strong>`;
+            content.appendChild(questionEl);
+
+            const answerEl = document.createElement("p");
+            answerEl.textContent = textareas[index].value || "-";
+            content.appendChild(answerEl);
+          });
+        }
+
+        // Tambahkan style ke content
+        content.style.padding = "20px";
+        content.style.fontFamily = "Arial, sans-serif";
+        content.style.color = "#333";
+        content.style.background = "#fff";
+        content.style.borderRadius = "5px";
+        content.style.width = "100%";
+        content.style.maxWidth = "800px";
+        content.style.margin = "0 auto";
+
+        // Append konten ke body tapi hide dulu
+        content.style.position = "absolute";
+        content.style.left = "-9999px";
+        document.body.appendChild(content);
+
+        // Gunakan html2canvas untuk capture content
+        html2canvas(content).then((canvas) => {
+          // Hapus konten yang sudah di-render
+          document.body.removeChild(content);
+
+          const imgData = canvas.toDataURL("image/png");
+          const pdf = new jsPDF("p", "mm", "a4");
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imgWidth = canvas.width;
+          const imgHeight = canvas.height;
+          const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+          const imgX = (pdfWidth - imgWidth * ratio) / 2;
+          const imgY = 30;
+
+          pdf.setFontSize(16);
+          pdf.text(title, 20, 20);
+          pdf.addImage(
+            imgData,
+            "PNG",
+            imgX,
+            imgY,
+            imgWidth * ratio,
+            imgHeight * ratio
+          );
+
+          // Download file
+          const filename = `Jurnal_Refleksi_Diri_Hari_${
+            entry ? entry.day : currentDay
+          }.pdf`;
+          pdf.save(filename);
+
+          showNotification("PDF berhasil diunduh!");
+        });
+      }
+
+      // Fungsi untuk mengubah tab
+      function switchTab(tab) {
+        if (tab === "journal") {
+          journalTab.classList.add("active");
+          historyTab.classList.remove("active");
+          journalSection.style.display = "block";
+          historyContainer.style.display = "none";
+          activeTab = "journal";
+        } else {
+          journalTab.classList.remove("active");
+          historyTab.classList.add("active");
+          journalSection.style.display = "none";
+          historyContainer.style.display = "block";
+          activeTab = "history";
+
+          // Refresh entries
+          loadTodaysEntries();
+        }
+      }
+
+      // Event listeners
+      saveButton.addEventListener("click", saveJournal);
+      downloadButton.addEventListener("click", () => generatePDF());
+
+      journalTab.addEventListener("click", () => switchTab("journal"));
+      historyTab.addEventListener("click", () => switchTab("history"));
+
+      // Inisialisasi aplikasi
+      function initApp() {
+        // Muat hari terakhir yang dicatat
+        currentDay = loadLastRecordedDay();
+
+        // Cek apakah jurnal sudah diisi hari ini
+        isJournalCompletedToday = checkIfJournalCompletedToday();
+
+        // Muat pertanyaan untuk hari ini
+        loadTodaysQuestions();
+
+        // Switch ke tab jurnal secara default
+        switchTab("journal");
+
+        // Tambahkan animasi untuk elemen-elemen di header
+        document.querySelectorAll(".animated").forEach((el) => {
+          setTimeout(() => {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+          }, 300);
+        });
+      }
+
+      // Jalankan inisialisasi
+      document.addEventListener("DOMContentLoaded", initApp);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

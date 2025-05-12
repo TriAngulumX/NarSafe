@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <link rel="icon" href="/Image/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surat Untuk Diri Sendiri</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for the icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #03afff;
+        --primary-dark: #03afff;
+        --secondary-color: #03658c;
+        --bg-dark: #182338;
+        --bg-darker: rgb(1, 18, 31);
+        --bg-card: #182338;
+        --border-color: #2c3a5a;
+        --hover-bg: rgba(59, 130, 246, 0.1);
+        --hover-border: rgba(59, 130, 246, 0.2);
+        --transition-speed: 0.3s;
+      }
+
+      body {
+        background: linear-gradient(185deg, black, var(--bg-darker));
+        color: white;
+        background-attachment: fixed;
+        font-family: "Segoe UI", Arial, sans-serif;
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      /* Navbar styles */
+      .navbar {
+        background-color: rgb(0, 0, 0);
+        line-height: 2.5rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: all 0.4s ease;
+        box-shadow: 0 2px 10px rgba(30, 30, 30, 0.836);
+      }
+
+      .logodark {
+        max-height: 40px;
+      }
+
+      .nav-link {
+        color: rgb(255, 255, 255) !important;
+        font-weight: 300;
+        padding: 0.7rem 1.2rem !important;
+        margin: 0 3px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        background-color: rgba(3, 101, 140, 0.3) !important;
+        transform: translateY(-2px);
+      }
+
+      .nav-link.active {
+        color: white !important;
+        font-weight: 500;
+        background-color: var(--secondary-color);
+        box-shadow: 0 2px 10px rgba(3, 101, 140, 0.3);
+      }
+      .navbar-toggler {
+        background-color: transparent;
+        padding: 0.5rem;
+      }
+      .navbar-toggler-icon {
+        display: inline-block;
+        width: 1.2em;
+        height: 1.5em;
+        vertical-align: middle;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='shape' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+      }
+
+      /* Card styles */
+      .card {
+        color: white;
+        background-color: var(--bg-dark);
+        border: none;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .question-card {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: all 0.2s ease;
+      }
+
+      .question-card:hover {
+        background-color: rgba(3, 101, 140, 0.1);
+      }
+
+      .selected-question {
+        border: 1px solid var(--secondary-color);
+        background-color: var(--hover-bg);
+      }
+
+      /* Modifikasi untuk layar kecil */
+      @media (max-width: 991px) {
+        .question-list-mobile {
+          max-height: 300px;
+          overflow-y: auto;
+        }
+
+        /* Styling untuk scrollbar */
+        .question-list-mobile::-webkit-scrollbar {
+          width: 5px;
+        }
+
+        .question-list-mobile::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 10px;
+        }
+
+        .question-list-mobile::-webkit-scrollbar-thumb {
+          background: var(--secondary-color);
+          border-radius: 10px;
+        }
+      }
+
+      /* Form elements */
+      .form-check-input[type="radio"] {
+        border-color: #6c757d;
+        cursor: pointer;
+      }
+
+      .form-check-input:checked {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .form-check-label {
+        cursor: pointer;
+        padding-left: 5px;
+      }
+
+      textarea {
+        z-index: 1;
+        background-color: var(--bg-card);
+        color: white;
+        border: 1px solid var(--border-color);
+        resize: none;
+        border-radius: 8px;
+        padding: 15px;
+        font-size: 1rem;
+        line-height: 1.6;
+        transition: all 0.3s ease;
+        min-height: 200px;
+      }
+
+      textarea:focus {
+        background-color: var(--bg-card);
+        color: white;
+        box-shadow: 0 0 0 3px rgba(3, 101, 140, 0.25);
+        border-color: var(--secondary-color);
+      }
+
+      /* Button styles */
+      .btn-primary {
+        background-color: #0084c1;
+        border-color: var(--secondary-color);
+        border-radius: 8px;
+        padding: 7px 20px 7px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: transparent;
+        border-color: var(--secondary-color);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline-secondary {
+        background-color: transparent;
+        color: #e0e0e0;
+        border-color: var(--secondary-color);
+        border-radius: 8px;
+        padding: 7px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline-secondary:hover {
+        background-color: #0084c1;
+        border-color: #0084c1;
+        transform: translateY(-2px);
+      }
+
+      .btn-outline-primary {
+        color: white;
+        border-color: #0084c1;
+        padding: 10px;
+      }
+      .btn-outline-primary:hover {
+        background-color: #0084c1;
+        border-color: #0084c1;
+      }
+
+      /* Homepage styles */
+      .home-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 90vh;
+        text-align: center;
+        padding: 5rem;
+        background-repeat: no-repeat;
+      }
+
+      .home-icon {
+        margin-top: 2rem;
+        font-size: 4rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        animation: pulse 2s infinite ease-in-out;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .home-title {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        background-color: #03afff;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .home-description {
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        line-height: 1.8;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .home-features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.8rem;
+        margin-bottom: 2rem;
+      }
+
+      .feature-card {
+        background-color: var(--hover-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        width: 300px;
+        text-align: center;
+        border: 1px solid var(--hover-border);
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        border-color: var(--secondary-color);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.2rem;
+      }
+
+      .feature-card h4 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .feature-card p {
+        color: #e0e0e0;
+        line-height: 1.6;
+      }
+
+      .btn-lg {
+        padding: 1rem 2.5rem;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-lg:hover {
+        transform: translateY(-5px);
+        box-shadow: 5px 1px 25px rgb(5, 126, 173);
+      }
+
+      /* Main app page */
+      .main-app {
+        display: none;
+        padding-top: 80px;
+        padding-bottom: 30px;
+        min-height: 100vh;
+      }
+
+      .col-lg-8 .textbor {
+        margin-top: 0.5rem;
+        color: rgb(182, 182, 182);
+      }
+
+      /* Saved Letters Page */
+      .saved-letters {
+        display: none;
+        padding-top: 80px;
+        padding-bottom: 30px;
+        min-height: 100vh;
+      }
+
+      .letter-list {
+        max-height: 600px;
+        overflow-y: auto;
+      }
+
+      .letter-item {
+        background-color: rgba(3, 101, 140, 0.1);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 15px;
+        padding: 15px;
+        transition: all 0.3s ease;
+      }
+
+      .letter-item:hover {
+        background-color: rgba(3, 101, 140, 0.2);
+        border-color: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      .letter-date {
+        font-size: 0.85rem;
+        color: #a0a0a0;
+      }
+
+      .letter-question {
+        font-weight: 500;
+        color: #ffffff;
+        margin: 8px 0;
+      }
+
+      .letter-preview {
+        font-size: 0.9rem;
+        color: #e0e0e0;
+        margin-bottom: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .letter-action {
+        margin-right: 10px;
+        font-size: 0.9rem;
+      }
+
+      /* Button group */
+      .btn-group-sm > .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .btn-view {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        border-radius: 5px;
+      }
+      .btn-view:hover {
+        background-color: #064e77;
+        border-color: #064e77;
+      }
+
+      .btn-edit {
+        background-color: #309e7b;
+        border-color: #309e7b;
+      }
+
+      .btn-delete {
+        background-color: #dc3545;
+        border-color: #dc3545;
+      }
+
+      /* Letter view modal */
+      .modal-content {
+        background-color: var(--bg-dark);
+        color: white;
+        border: 1px solid var(--border-color);
+      }
+
+      .modal-header {
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .modal-footer {
+        border-top: 1px solid var(--border-color);
+      }
+
+      .modal-title {
+        color: white;
+      }
+
+      .btn-close {
+        color: white;
+        background: transparent
+          url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
+          center/1em auto no-repeat;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 992px) {
+        .home-features {
+          gap: 1rem;
+        }
+
+        .feature-card {
+          width: 280px;
+          padding: 1.5rem;
+        }
+
+        .home-title {
+          font-size: 2.3rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .home-page {
+          padding: 1.5rem;
+        }
+
+        .home-description {
+          font-size: 1rem;
+        }
+
+        .home-features {
+          gap: 1rem;
+        }
+
+        .feature-card {
+          width: 100%;
+          max-width: 350px;
+        }
+
+        .btn-lg {
+          padding: 0.8rem 2rem;
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        textarea {
+          min-height: 150px;
+          padding: 12px;
+        }
+
+        .card {
+          padding: 15px;
+        }
+
+        .home-title {
+          font-size: 2rem;
+        }
+      }
+
+      /* Additional Animation */
+      .fade-in {
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Success notification */
+      .toast-container {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        z-index: 1500;
+      }
+
+      .toast {
+        color: black;
+        background-color: rgb(2, 61, 84);
+        border-left: 4px solid var(--primary-color);
+      }
+
+      .toast-header {
+        background-color: rgba(3, 101, 140, 0.2);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .toast-body {
+        color: rgb(255, 255, 255);
+      }
+
+      /* Empty state */
+      .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .empty-state i {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        opacity: 0.7;
+      }
+
+      .empty-state h4 {
+        margin-bottom: 15px;
+        color: #e0e0e0;
+      }
+
+      .empty-state p {
+        color: #e31818;
+        max-width: 400px;
+        margin: 0 auto 20px;
+      }
+
+      /* Perbaikan responsivitas untuk website Surat Untuk Diri Sendiri */
+
+      /* Base adjustments */
+      @media (max-width: 992px) {
+        .container {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+
+        .card {
+          padding: 15px !important;
+        }
+
+        .nav-link {
+          padding: 0.5rem 0.8rem !important;
+          margin: 0 2px;
+        }
+
+        /* Reduce spacing in navigation */
+        .navbar-nav {
+          margin-top: 10px;
+        }
+
+        /* Adjust home page spacing */
+        .home-page {
+          padding: 3rem 1rem;
+        }
+
+        .home-title {
+          font-size: 2.2rem;
+          margin-bottom: 1rem;
+        }
+
+        .home-description {
+          font-size: 1rem;
+          margin-bottom: 2rem;
+        }
+
+        .home-features {
+          gap: 1rem;
+        }
+
+        .feature-card {
+          width: 45%;
+          padding: 1.5rem;
+        }
+
+        .feature-icon {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        /* Button adjustments */
+        .btn-lg {
+          padding: 0.8rem 1.5rem;
+          font-size: 1rem;
+        }
+
+        /* Make the letter list more compact */
+        .letter-item {
+          padding: 12px;
+          margin-bottom: 12px;
+        }
+      }
+
+      /* Tablet adjustments */
+      @media (max-width: 768px) {
+        /* Further adjust home page for tablets */
+        .home-title {
+          font-size: 1.8rem;
+        }
+
+        .home-description {
+          font-size: 0.95rem;
+          margin-bottom: 1.8rem;
+        }
+
+        /* Make buttons more appropriate for touch */
+        .btn {
+          padding: 8px 16px;
+        }
+
+        .btn-lg {
+          padding: 10px 20px;
+        }
+
+        /* Stack buttons on smaller screens */
+        .d-flex.gap-3 {
+          flex-direction: column;
+          gap: 0.8rem !important;
+        }
+
+        .d-flex.gap-3 .btn {
+          width: 100%;
+        }
+
+        /* Letter item action buttons */
+        .letter-action {
+          padding: 0.3rem 0.5rem;
+          font-size: 0.8rem;
+        }
+
+        /* Feature cards on tablet */
+        .feature-card {
+          width: 100%;
+          max-width: 350px;
+          margin: 0 auto;
+        }
+
+        /* Adjust modal sizes */
+        .modal-dialog {
+          margin: 10px;
+        }
+
+        /* Fix the toast position */
+        .toast-container {
+          top: 60px;
+          right: 10px;
+        }
+      }
+
+      /* Mobile phone adjustments */
+      @media (max-width: 576px) {
+        /* Navbar logo size */
+        .logodark {
+          max-height: 30px;
+        }
+
+        /* Letter item adjustments */
+        .letter-item {
+          padding: 10px;
+        }
+
+        .letter-date {
+          font-size: 0.75rem;
+        }
+
+        .letter-question {
+          font-size: 0.9rem;
+          margin: 6px 0;
+        }
+
+        .letter-preview {
+          font-size: 0.8rem;
+          margin-bottom: 8px;
+        }
+
+        /* Action buttons layout for small screens */
+        .letter-item .d-flex {
+          flex-wrap: wrap;
+          gap: 5px;
+        }
+
+        /* Question cards */
+        .question-card {
+          padding: 8px;
+        }
+
+        .form-check-label {
+          font-size: 0.9rem;
+        }
+
+        .textbor {
+          font-size: 0.95rem;
+        }
+
+        /* Main app page */
+        .main-app {
+          padding-top: 70px;
+          padding-bottom: 20px;
+        }
+
+        .saved-letters {
+          padding-top: 70px;
+          padding-bottom: 20px;
+        }
+
+        /* Manage the page actions */
+        .d-flex.justify-content-between {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .d-flex.justify-content-between .btn {
+          width: 100%;
+          margin-right: 0 !important;
+          margin-bottom: 8px;
+        }
+
+        /* Fix padding on cards */
+        .card {
+          padding: 12px !important;
+        }
+
+        /* Adjust textarea */
+        textarea {
+          min-height: 120px;
+          padding: 10px;
+          font-size: 0.9rem;
+        }
+
+        /* Modal adjustments */
+        .modal-body {
+          padding: 12px;
+        }
+
+        .modal-header,
+        .modal-footer {
+          padding: 10px 12px;
+        }
+
+        /* Home page extra adjustments */
+        .home-page {
+          padding: 2rem 0.8rem;
+        }
+
+        .home-icon {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+        }
+
+        .home-title {
+          font-size: 1.6rem;
+        }
+
+        /* Empty state adjustments */
+        .empty-state {
+          padding: 25px 15px;
+        }
+
+        .empty-state i {
+          font-size: 2.5rem;
+        }
+
+        .empty-state h4 {
+          font-size: 1.2rem;
+        }
+
+        .empty-state p {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Extra small devices */
+      @media (max-width: 400px) {
+        .home-title {
+          font-size: 1.4rem;
+        }
+
+        .feature-card {
+          padding: 1.2rem;
+        }
+
+        .feature-icon {
+          font-size: 1.8rem;
+          margin-bottom: 0.8rem;
+        }
+
+        .feature-card h4 {
+          font-size: 1.1rem;
+        }
+
+        .feature-card p {
+          font-size: 0.85rem;
+        }
+
+        /* Adjust toast notifications */
+        .toast {
+          max-width: 300px;
+        }
+
+        .toast-body {
+          padding: 8px;
+          font-size: 0.85rem;
+        }
+
+        /* Fix navbar toggler */
+        .navbar-toggler {
+          padding: 4px 8px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Fix navbar collapse behavior on mobile */
+      @media (max-width: 992px) {
+        .navbar-collapse {
+          background-color: rgb(0, 0, 0);
+          padding: 10px;
+          border-radius: 0 0 8px 8px;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-nav .nav-item {
+          margin-bottom: 5px;
+        }
+
+        .nav-link {
+          text-align: center;
+        }
+      }
+
+      /* Improve touch targets for mobile */
+      @media (max-width: 768px) {
+        .form-check-input {
+          transform: scale(1.1);
+        }
+
+        .form-check-label {
+          padding-left: 8px;
+        }
+
+        /* Better form controls for mobile */
+        .form-select,
+        .form-control {
+          font-size: 16px; /* Prevents iOS zoom on focus */
+          padding: 10px;
+        }
+
+        /* Better toast positioning for mobile */
+        .toast-container {
+          width: 100%;
+          left: 0;
+          right: 0;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">
+          <img
+            src="Logo/Narsafe logo.png"
+            alt="Narsafe Logo"
+            class="logodark"
+          />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/selfreflection/index.html"
+                >Self Check-In</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/SelfStep/index.html">Self Step</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Weekly Challenge</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/Letter/index.html"
+                >Letter to Yourself</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Toast Notification -->
+    <div class="toast-container">
+      <div
+        class="toast align-items-center"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        id="notificationToast"
+        data-bs-autohide="true"
+        data-bs-delay="3000"
+      >
+        <div class="d-flex">
+          <div class="toast-body">
+            <i class="fas fa-check-circle me-2"></i>
+            <span id="toastMessage">Operasi berhasil</span>
+          </div>
+          <button
+            type="button"
+            class="btn-close me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Home Page -->
+    <div class="home-page" id="homePage">
+      <div class="home-icon">
+        <i class="fas fa-envelope-open-text"></i>
+      </div>
+      <h1 class="home-title">Surat Untuk Diri Sendiri</h1>
+      <p class="home-description">
+        Fitur ini membantu Anda menulis surat untuk diri sendiri sebagai bentuk
+        refleksi diri. Dengan menjawab pertanyaan-pertanyaan reflektif, Anda
+        dapat menggali pikiran dan perasaan terdalam, memahami diri lebih baik,
+        dan menemukan kejelasan dalam perjalanan hidup Anda.
+      </p>
+
+      <div class="home-features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <h4>Pertanyaan Reflektif</h4>
+          <p>
+            Berbagai pertanyaan mendalam untuk memicu refleksi diri yang
+            bermakna
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-pen-nib"></i>
+          </div>
+          <h4>Ekspresikan Diri</h4>
+          <p>
+            Ruang aman untuk mengekspresikan pikiran dan perasaan terdalam Anda
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h4>Temukan Makna</h4>
+          <p>
+            Jelajahi apa yang benar-benar penting bagi Anda dan apa yang memberi
+            arti pada hidup Anda
+          </p>
+        </div>
+      </div>
+
+      <div class="d-flex gap-3">
+        <button class="btn btn-primary btn-lg" id="continueBtn">
+          <i class="fas fa-edit me-2"></i> Tulis Surat Baru
+        </button>
+        <button class="btn btn-outline-secondary btn-lg" id="viewSavedBtn">
+          <i class="fas fa-envelope me-2"></i> Lihat Surat Tersimpan
+        </button>
+      </div>
+    </div>
+
+    <!-- Main App (modified to include saved letters button) -->
+    <div class="main-app" id="mainApp">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <div class="card p-4">
+              <h5 class="mb-4">Pilih Satu Pertanyaan:</h5>
+
+              <!-- Questions for all screen sizes -->
+              <div class="question-list-mobile">
+                <div class="question-card mb-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q1"
+                    />
+                    <label class="form-check-label" for="q1">
+                      Apa yang membuatmu merasa paling dihargai dalam hidup ini?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card mb-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q2"
+                    />
+                    <label class="form-check-label" for="q2">
+                      Apa yang kamu butuhkan ketika merasa tidak cukup dihargai
+                      oleh orang lain?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card mb-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q3"
+                    />
+                    <label class="form-check-label" for="q3">
+                      Apa hal yang kamu hindari karena takut gagal?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card mb-3 selected-question">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q4"
+                      checked
+                    />
+                    <label class="form-check-label" for="q4">
+                      Apa yang membuatmu merasa paling hidup dan berarti?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card mb-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q5"
+                    />
+                    <label class="form-check-label" for="q5">
+                      Apa yang kamu ingin katakan pada dirimu ketika kamu merasa
+                      tidak dihargai?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card mb-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q6"
+                    />
+                    <label class="form-check-label" for="q6">
+                      Apa yang ingin kamu ubah dalam dirimu agar lebih merasa
+                      damai?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card mb-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q7"
+                    />
+                    <label class="form-check-label" for="q7">
+                      Ketika kamu merasa kehilangan arah, apa yang bisa
+                      mengingatkanmu tentang tujuanmu?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q8"
+                    />
+                    <label class="form-check-label" for="q8">
+                      Apa yang paling kamu hargai dalam dirimu, meski tidak
+                      selalu dilihat orang lain?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q9"
+                    />
+                    <label class="form-check-label" for="q9">
+                      Apa yang selama ini kamu takuti, padahal sebenarnya itu
+                      adalah bagian dari perjalananmu?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q10"
+                    />
+                    <label class="form-check-label" for="q10">
+                      Apa pesan terbaik yang bisa kamu beri pada diri sendiri
+                      untuk hari ini?
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-card">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="question"
+                      id="q11"
+                    />
+                    <label class="form-check-label" for="q11">
+                      Sampaikan apapun yang ingin kamu katakan pada dirimu hari
+                      ini. Apa yang perlu diingatkan atau didorong dalam
+                      perjalananmu?
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8">
+            <div class="card p-4 mb-4">
+              <h4 class="mb-3">Surat Untuk Diri Sendiri</h4>
+              <h6 class="textbor" id="selectedQuestionText">
+                Apa yang membuatmu merasa paling hidup dan berarti?
+              </h6>
+
+              <div class="mb-4">
+                <textarea
+                  class="form-control black"
+                  id="letterContent"
+                  rows="10"
+                  placeholder="Tuliskan jawabanmu di sini..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <div>
+                <button
+                  class="btn btn-outline-secondary px-4 me-2"
+                  id="backToHomeBtn"
+                >
+                  <i class="fas fa-arrow-left me-2"></i> Kembali
+                </button>
+                <button
+                  class="btn btn-outline-primary px-4"
+                  id="viewSavedBtnInMain"
+                >
+                  <i class="fas fa-envelope me-2"></i> Lihat Surat Tersimpan
+                </button>
+              </div>
+              <button class="btn btn-primary px-4" id="saveLetterBtn">
+                <i class="fas fa-save me-2"></i> Simpan Surat
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved Letters Page -->
+    <div class="saved-letters" id="savedLettersPage">
+      <div class="container">
+        <div class="card p-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0">
+              <i class="fas fa-envelope me-2"></i> Surat Tersimpan
+            </h4>
+            <div>
+              <button
+                class="btn btn-outline-secondary me-2"
+                id="backToHomeFromSaved"
+              >
+                <i class="fas fa-home me-2"></i>Kembali
+              </button>
+              <button class="btn btn-primary" id="writeNewFromSaved">
+                <i class="fas fa-pen me-2"></i> Tulis Surat Baru
+              </button>
+            </div>
+          </div>
+
+          <div class="letter-list" id="letterList">
+            <!-- Surat akan ditampilkan di sini via JavaScript -->
+            <div class="empty-state" id="emptyState">
+              <i class="fas fa-envelope-open"></i>
+              <h4>Belum Ada Surat Tersimpan</h4>
+              <p>
+                Surat yang Anda tulis akan muncul di sini. Mulailah dengan
+                menulis surat untuk diri sendiri.
+              </p>
+              <button class="btn btn-primary" id="writeFirstLetter">
+                <i class="fas fa-pen me-2"></i> Tulis Surat Pertama
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letter View Modal -->
+    <div
+      class="modal fade"
+      id="letterViewModal"
+      tabindex="-1"
+      aria-labelledby="letterViewModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="letterViewModalLabel">
+              Surat Untuk Diri Sendiri
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="letter-date mb-2" id="modalDate"></div>
+            <h4 class="letter-question mb-3" id="modalQuestion"></h4>
+            <div class="letter-content" id="modalContent"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Letter Modal -->
+    <div
+      class="modal fade"
+      id="letterEditModal"
+      tabindex="-1"
+      aria-labelledby="letterEditModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="letterEditModalLabel">Edit Surat</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="editQuestion" class="form-label">Pertanyaan</label>
+              <select class="form-select bg-dark text-white" id="editQuestion">
+                <option
+                  value="Apa yang membuatmu merasa paling dihargai dalam hidup ini?"
+                >
+                  Apa yang membuatmu merasa paling dihargai dalam hidup ini?
+                </option>
+                <option
+                  value="Apa yang kamu butuhkan ketika merasa tidak cukup dihargai oleh orang lain?"
+                >
+                  Apa yang kamu butuhkan ketika merasa tidak cukup dihargai oleh
+                  orang lain?
+                </option>
+                <option value="Apa hal yang kamu hindari karena takut gagal?">
+                  Apa hal yang kamu hindari karena takut gagal?
+                </option>
+                <option
+                  value="Apa yang membuatmu merasa paling hidup dan berarti?"
+                >
+                  Apa yang membuatmu merasa paling hidup dan berarti?
+                </option>
+                <option
+                  value="Apa yang kamu ingin katakan pada dirimu ketika kamu merasa tidak dihargai?"
+                >
+                  Apa yang kamu ingin katakan pada dirimu ketika kamu merasa
+                  tidak dihargai?
+                </option>
+                <option
+                  value="Apa yang ingin kamu ubah dalam dirimu agar lebih merasa damai?"
+                >
+                  Apa yang ingin kamu ubah dalam dirimu agar lebih merasa damai?
+                </option>
+                <option
+                  value="Ketika kamu merasa kehilangan arah, apa yang bisa mengingatkanmu tentang tujuanmu?"
+                >
+                  Ketika kamu merasa kehilangan arah, apa yang bisa
+                  mengingatkanmu tentang tujuanmu?
+                </option>
+                <option
+                  value="Apa yang paling kamu hargai dalam dirimu, meski tidak selalu dilihat orang lain?"
+                >
+                  Apa yang paling kamu hargai dalam dirimu, meski tidak selalu
+                  dilihat orang lain?
+                </option>
+                <option
+                  value="Apa yang selama ini kamu takuti, padahal sebenarnya itu
+                      adalah bagian dari perjalananmu?"
+                >
+                  Apa yang selama ini kamu takuti, padahal sebenarnya itu adalah
+                  bagian dari perjalananmu?
+                </option>
+                <option
+                  value="Apa pesan terbaik yang bisa kamu beri pada diri sendiri
+                      untuk hari ini?"
+                >
+                  Apa pesan terbaik yang bisa kamu beri pada diri sendiri untuk
+                  hari ini?
+                </option>
+                <option
+                  value="Sampaikan apapun yang ingin kamu katakan pada dirimu hari
+                      ini. Apa yang perlu diingatkan atau didorong dalam
+                      perjalananmu?"
+                >
+                  Sampaikan apapun yang ingin kamu katakan pada dirimu hari ini.
+                  Apa yang perlu diingatkan atau didorong dalam perjalananmu?
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editContent" class="form-label">Isi Surat</label>
+              <textarea
+                class="form-control bg-dark text-white"
+                id="editContent"
+                rows="10"
+              ></textarea>
+            </div>
+            <input type="hidden" id="editLetterId" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+            <button type="button" class="btn btn-primary" id="saveEditBtn">
+              Simpan Perubahan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div
+      class="modal fade"
+      id="deleteConfirmModal"
+      tabindex="-1"
+      aria-labelledby="deleteConfirmModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteConfirmModalLabel">
+              Konfirmasi Hapus
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Apakah Anda yakin ingin menghapus surat ini?</p>
+            <input type="hidden" id="deleteId" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+              <i class="fas fa-trash me-2"></i>Hapus
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // DOM Elements
+        const homePage = document.getElementById("homePage");
+        const mainApp = document.getElementById("mainApp");
+        const savedLettersPage = document.getElementById("savedLettersPage");
+        const letterTextArea = document.getElementById("letterContent");
+        const selectedQuestionTextElement = document.getElementById(
+          "selectedQuestionText"
+        );
+        const letterList = document.getElementById("letterList");
+        const emptyState = document.getElementById("emptyState");
+
+        // Modals
+        const letterViewModal = new bootstrap.Modal(
+          document.getElementById("letterViewModal")
+        );
+        const letterEditModal = new bootstrap.Modal(
+          document.getElementById("letterEditModal")
+        );
+        const deleteConfirmModal = new bootstrap.Modal(
+          document.getElementById("deleteConfirmModal")
+        );
+        const toast = new bootstrap.Toast(
+          document.getElementById("notificationToast")
+        );
+
+        // Buttons
+        const continueBtn = document.getElementById("continueBtn");
+        const viewSavedBtn = document.getElementById("viewSavedBtn");
+        const viewSavedBtnInMain =
+          document.getElementById("viewSavedBtnInMain");
+        const backToHomeBtn = document.getElementById("backToHomeBtn");
+        const backToHomeFromSaved = document.getElementById(
+          "backToHomeFromSaved"
+        );
+        const writeNewFromSaved = document.getElementById("writeNewFromSaved");
+        const writeFirstLetter = document.getElementById("writeFirstLetter");
+        const saveLetterBtn = document.getElementById("saveLetterBtn");
+        const saveEditBtn = document.getElementById("saveEditBtn");
+        const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+        // Initialize storage
+        let letters = JSON.parse(localStorage.getItem("letters")) || [];
+
+        // Navigation functions
+        function showHomePage() {
+          mainApp.style.display = "none";
+          savedLettersPage.style.display = "none";
+          homePage.style.display = "flex";
+          window.scrollTo(0, 0);
+        }
+
+        function showMainApp() {
+          homePage.style.display = "none";
+          savedLettersPage.style.display = "none";
+          mainApp.style.display = "block";
+          window.scrollTo(0, 0);
+        }
+
+        function showSavedLetters() {
+          homePage.style.display = "none";
+          mainApp.style.display = "none";
+          savedLettersPage.style.display = "block";
+          window.scrollTo(0, 0);
+          renderLetterList();
+        }
+
+        // Event listeners for navigation
+        continueBtn.addEventListener("click", showMainApp);
+        viewSavedBtn.addEventListener("click", showSavedLetters);
+        viewSavedBtnInMain.addEventListener("click", showSavedLetters);
+        backToHomeBtn.addEventListener("click", showHomePage);
+        backToHomeFromSaved.addEventListener("click", showHomePage);
+        writeNewFromSaved.addEventListener("click", showMainApp);
+        writeFirstLetter.addEventListener("click", showMainApp);
+
+        // Handle question selection
+        function updateQuestionTitle(questionText) {
+          if (selectedQuestionTextElement) {
+            selectedQuestionTextElement.textContent = questionText;
+          }
+        }
+
+        // Radio buttons for question selection
+        document.querySelectorAll(".form-check-input").forEach((radio) => {
+          radio.addEventListener("change", function () {
+            document.querySelectorAll(".question-card").forEach((card) => {
+              card.classList.remove("selected-question");
+            });
+            this.closest(".question-card").classList.add("selected-question");
+            updateQuestionTitle(this.nextElementSibling.textContent.trim());
+          });
+        });
+
+        // Show notification
+        function showToast(message) {
+          document.getElementById("toastMessage").textContent = message;
+          toast.show();
+        }
+
+        // Save letter
+        saveLetterBtn.addEventListener("click", function () {
+          const question = selectedQuestionTextElement.textContent.trim();
+          const content = letterTextArea.value.trim();
+
+          if (!content) {
+            alert("Mohon tuliskan jawaban Anda sebelum menyimpan.");
+            return;
+          }
+
+          // Generate a unique ID for the letter
+          const id = Date.now().toString();
+          const date = new Date();
+
+          // Format the date (Indonesian format)
+          const formattedDate = date.toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+          // Create letter object
+          const letter = {
+            id,
+            question,
+            content,
+            date: formattedDate,
+            timestamp: date.getTime(),
+          };
+
+          // Add to storage
+          letters.unshift(letter);
+          localStorage.setItem("letters", JSON.stringify(letters));
+
+          // Clear form
+          letterTextArea.value = "";
+
+          // Show confirmation
+          showToast("Surat berhasil disimpan!");
+        });
+
+        // Render letter list
+        function renderLetterList() {
+          // Sort letters by timestamp (newest first)
+          letters.sort((a, b) => b.timestamp - a.timestamp);
+
+          // Show empty state if no letters
+          if (letters.length === 0) {
+            emptyState.style.display = "block";
+            letterList.innerHTML = ""; // Clear any existing items
+            return;
+          }
+
+          // Hide empty state and render letters
+          emptyState.style.display = "none";
+
+          // Clear current list
+          letterList.innerHTML = "";
+
+          // Add each letter
+          letters.forEach((letter) => {
+            const preview =
+              letter.content.length > 100
+                ? letter.content.substring(0, 100) + "..."
+                : letter.content;
+
+            const letterItem = document.createElement("div");
+            letterItem.className = "letter-item fade-in";
+            letterItem.innerHTML = `
+              <div class="letter-date">${letter.date}</div>
+              <div class="letter-question">${letter.question}</div>
+              <div class="letter-preview">${preview}</div>
+              <div class="d-flex">
+                <button class="btn btn-sm btn-primary letter-action btn-view" data-id="${letter.id}">
+                  <i class="fas fa-eye me-1"></i> Baca
+                </button>
+                <button class="btn btn-sm btn-success letter-action btn-edit" data-id="${letter.id}">
+                  <i class="fas fa-edit me-1"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-danger letter-action btn-delete" data-id="${letter.id}">
+                  <i class="fas fa-trash me-1"></i> Hapus
+                </button>
+              </div>
+            `;
+
+            letterList.appendChild(letterItem);
+          });
+
+          // Add event listeners to buttons
+          addLetterActionListeners();
+        }
+
+        // Add event listeners to letter action buttons
+        function addLetterActionListeners() {
+          // View letter
+          document.querySelectorAll(".btn-view").forEach((btn) => {
+            btn.addEventListener("click", function () {
+              const id = this.getAttribute("data-id");
+              const letter = letters.find((l) => l.id === id);
+
+              if (letter) {
+                document.getElementById("modalDate").textContent = letter.date;
+                document.getElementById("modalQuestion").textContent =
+                  letter.question;
+                document.getElementById("modalContent").textContent =
+                  letter.content;
+                letterViewModal.show();
+              }
+            });
+          });
+
+          // Edit letter
+          document.querySelectorAll(".btn-edit").forEach((btn) => {
+            btn.addEventListener("click", function () {
+              const id = this.getAttribute("data-id");
+              const letter = letters.find((l) => l.id === id);
+
+              if (letter) {
+                document.getElementById("editLetterId").value = letter.id;
+                document.getElementById("editQuestion").value = letter.question;
+                document.getElementById("editContent").value = letter.content;
+                letterEditModal.show();
+              }
+            });
+          });
+
+          // Delete letter
+          document.querySelectorAll(".btn-delete").forEach((btn) => {
+            btn.addEventListener("click", function () {
+              const id = this.getAttribute("data-id");
+              document.getElementById("deleteId").value = id;
+              deleteConfirmModal.show();
+            });
+          });
+        }
+
+        // Save edited letter
+        saveEditBtn.addEventListener("click", function () {
+          const id = document.getElementById("editLetterId").value;
+          const question = document.getElementById("editQuestion").value;
+          const content = document.getElementById("editContent").value;
+
+          if (!content) {
+            alert("Mohon tuliskan jawaban Anda sebelum menyimpan.");
+            return;
+          }
+
+          // Find letter and update
+          const index = letters.findIndex((l) => l.id === id);
+          if (index !== -1) {
+            letters[index].question = question;
+            letters[index].content = content;
+
+            // Save to storage
+            localStorage.setItem("letters", JSON.stringify(letters));
+
+            // Close modal and refresh list
+            letterEditModal.hide();
+            renderLetterList();
+            showToast("Surat berhasil diperbarui!");
+          }
+        });
+
+        // Confirm delete letter
+        confirmDeleteBtn.addEventListener("click", function () {
+          const id = document.getElementById("deleteId").value;
+
+          // Filter out the letter to delete
+          letters = letters.filter((l) => l.id !== id);
+
+          // Save to storage
+          localStorage.setItem("letters", JSON.stringify(letters));
+
+          // Close modal and refresh list
+          deleteConfirmModal.hide();
+          renderLetterList();
+          showToast("Surat berhasil dihapus!");
+        });
+
+        // Initialize
+        updateQuestionTitle(
+          "Apa yang membuatmu merasa paling hidup dan berarti?"
+        );
+      });
+
+      function adjustLayoutForScreenSize() {
+        const isMobile = window.innerWidth < 768;
+        const isTablet = window.innerWidth >= 768 && window.innerWidth < 992;
+
+        // Menyesuaikan tinggi textarea berdasarkan ukuran layar
+        if (isMobile) {
+          letterTextArea.rows = 6;
+        } else if (isTablet) {
+          letterTextArea.rows = 8;
+        } else {
+          letterTextArea.rows = 10;
+        }
+
+        // Sesuaikan tampilan tombol pada layar kecil
+        const actionButtons = document.querySelectorAll(".action-buttons");
+        actionButtons.forEach((container) => {
+          if (isMobile) {
+            container.classList.add("flex-column");
+            container.querySelectorAll(".btn").forEach((btn) => {
+              btn.classList.add("w-100");
+            });
+          } else {
+            container.classList.remove("flex-column");
+            container.querySelectorAll(".btn").forEach((btn) => {
+              btn.classList.remove("w-100");
+            });
+          }
+        });
+
+        // Tutup navbar collapse saat item dipilih (untuk mobile)
+        if (isMobile || isTablet) {
+          const navLinks = document.querySelectorAll(".nav-link");
+          const navCollapse = document.querySelector(".navbar-collapse");
+          const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+
+          navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              if (bsCollapse && navCollapse.classList.contains("show")) {
+                bsCollapse.hide();
+              }
+            });
+          });
+        }
+      }
+
+      // Tambahkan listener untuk perubahan ukuran layar
+      window.addEventListener("resize", adjustLayoutForScreenSize);
+
+      // Panggil fungsi pada saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", function () {
+        // Kode yang sudah ada...
+
+        // Tambahkan pemanggilan fungsi di akhir
+        adjustLayoutForScreenSize();
+
+        // Perbaikan scrolling untuk perangkat mobile
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId !== "#") {
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                window.scrollTo({
+                  top: targetElement.offsetTop - 70,
+                  behavior: "smooth",
+                });
+              }
+            }
+          });
+        });
+
+        // Perbaikan untuk interaksi touch pada mobile
+        if ("ontouchstart" in window) {
+          document.querySelectorAll(".question-card").forEach((card) => {
+            card.addEventListener("touchstart", function () {
+              this.classList.add("selected-question");
+
+              // Pilih radio button yang ada di dalam card
+              const radioBtn = this.querySelector('input[type="radio"]');
+              if (radioBtn) {
+                radioBtn.checked = true;
+
+                // Trigger event change untuk memperbarui pertanyaan terpilih
+                const event = new Event("change");
+                radioBtn.dispatchEvent(event);
+              }
+            });
+          });
+        }
+      });
+
+      // Tambahkan fungsi ini untuk memperbaiki tampilan toast pada mobile
+      function showResponsiveToast(message) {
+        document.getElementById("toastMessage").textContent = message;
+
+        // Posisikan toast dengan baik pada mobile
+        if (window.innerWidth < 576) {
+          document.querySelector(".toast-container").style.width = "100%";
+          document.querySelector(".toast-container").style.left = "0";
+          document.querySelector(".toast-container").style.right = "0";
+          document.querySelector(".toast-container").style.display = "flex";
+          document.querySelector(".toast-container").style.justifyContent =
+            "center";
+        }
+
+        toast.show();
+      }
+    </script>
+  </body>
+</html>
